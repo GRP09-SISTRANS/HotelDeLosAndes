@@ -20,13 +20,14 @@ public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Inte
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Plan_Consumo (id, nombre, costo, descripcion) VALUES (:id, :nombre, :costo, :descripcion)", nativeQuery = true)
-    void insertarPlan_Consumo(Integer id, String nombre, Integer costo, String descripcion);
+    @Query(value = "INSERT INTO Plan_Consumo (id, nombre, descripcion) VALUES (:id, :nombre, :costo, :descripcion)", nativeQuery = true)
+    void insertarPlan_Consumo(Integer id, String nombre
+    , String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Plan_Consumo SET nombre=:nombre, costo=:costo, descripcion=:descripcion WHERE id = :id", nativeQuery = true)
-    void actualizarPlan_Consumo(Integer id, String nombre, Integer costo, String descripcion);
+    @Query(value = "UPDATE Plan_Consumo SET nombre=:nombre, descripcion=:descripcion WHERE id = :id", nativeQuery = true)
+    void actualizarPlan_Consumo(Integer id, String nombre, String descripcion);
 
     @Modifying
     @Transactional

@@ -17,12 +17,12 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    private Long id;
+    private Integer id;
     private Date check_in;
     private Date check_out;
     private Date fecha_inicio_reserva;
     private Date fecha_final_reserva;
-    
+
     @OneToMany(mappedBy = "reserva")
     private List<CuentaEntity> cuentas;
 
@@ -37,11 +37,11 @@ public class Reserva {
     public Reserva()
     {;}
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
