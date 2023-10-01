@@ -53,7 +53,6 @@ public class ProductoController {
     }
 
     @GetMapping("/productos/{id}/edit")
-    @Transactional
     public String productoEditarForm(@PathVariable("id") Long id, Model model) {
         Optional<ProductoEntity> producto = this.productoRepository.findById(id);
         if (producto.get() != null) {
@@ -65,6 +64,7 @@ public class ProductoController {
     }
 
     @PostMapping("/productos/{id}/edit/save")
+    @Transactional
     public String productoEditarGuardar(@PathVariable("id") long id, @ModelAttribute ProductoEntity productoEntity) {
         this.productoRepository.save(productoEntity);
         return "redirect:/productos";

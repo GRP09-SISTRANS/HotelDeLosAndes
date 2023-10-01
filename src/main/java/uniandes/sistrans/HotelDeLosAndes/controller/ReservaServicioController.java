@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.transaction.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ReservaServicioEntity;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Usuario;
@@ -42,6 +43,7 @@ public class ReservaServicioController {
     }
 
     @PostMapping("/reservasServicios/new/save")
+    @Transactional
     public String frecuentanGuardar(@ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario,
             @ModelAttribute("fecha") Date fecha) {
         Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
@@ -71,6 +73,7 @@ public String editReservaServicioForm(@PathVariable Long id, Model model) {
 }
 
 @PostMapping("/reservasServicios/{id}/edit/save")
+@Transactional
 public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
     Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
     Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
@@ -86,6 +89,7 @@ public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @M
 }
 
     @GetMapping(value="/reservasServicios/{id}/delete")
+    @Transactional
     public String eliminarHabitacion(@PathVariable Long id) {
         reservaServicioRepository.deleteById(id);
         return "redirect:/reservasServicios";

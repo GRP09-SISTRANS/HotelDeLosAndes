@@ -74,6 +74,7 @@ public class CuentaController {
         }
     }
 
+    @Transactional
     @PostMapping("/cuentas/{id}/edit/save")
     public String cuentaEditarGuardar(@PathVariable long idCuenta, @ModelAttribute ("id_reserva") Integer idReserva, @ModelAttribute ("id_producto") Long idProducto) {
         Optional<CuentaEntity> cuenta = this.cuentaRepository.findById(idCuenta);
@@ -88,8 +89,8 @@ public class CuentaController {
         return "redirect:/cuentas";
     }
 
-    @GetMapping("/cuentas/{id}/delete")
     @Transactional
+    @GetMapping("/cuentas/{id}/delete")
     public String cuentaEliminar(@PathVariable("id") long id) {
         this.cuentaRepository.deleteById(id);
         return "redirect:/cuentas";
