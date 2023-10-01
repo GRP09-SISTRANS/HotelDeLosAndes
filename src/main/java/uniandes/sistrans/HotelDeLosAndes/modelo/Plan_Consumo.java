@@ -18,5 +18,41 @@ public class Plan_Consumo {
     private String nombre;
 
     private String descripcion;
+
+    public Plan_Consumo(Integer Id, String Nombre, String Descripcion) {
+
+        this.id = Id;
+        this.nombre = Nombre;
+        this.descripcion = Descripcion;
+    }
+
+    public Plan_Consumo()
+    {;}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    
     
 }

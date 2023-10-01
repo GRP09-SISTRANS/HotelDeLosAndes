@@ -9,14 +9,14 @@ import jakarta.persistence.Table;
 public class Tipos_Habitacion {
 
     @Id
-    private char id;
+    private Integer id;
     private String nombre;
     private Integer costo;
     private boolean minibar;
     private boolean cafetera;
     private boolean television;
 
-    public Tipos_Habitacion(char Id, String Nombre, Integer Costo, boolean Minibar, boolean Cafetera, boolean Television) {
+    public Tipos_Habitacion(Integer Id, String Nombre, Integer Costo, boolean Minibar, boolean Cafetera, boolean Television) {
 
         this.id = Id;
         this.nombre = Nombre;
@@ -29,11 +29,11 @@ public class Tipos_Habitacion {
     public Tipos_Habitacion()
     {;}
 
-    public char getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(char id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
