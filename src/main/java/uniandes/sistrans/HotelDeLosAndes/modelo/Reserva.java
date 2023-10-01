@@ -1,6 +1,8 @@
 package uniandes.sistrans.HotelDeLosAndes.modelo;
 
 import java.sql.Date;
+import java.util.Optional;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

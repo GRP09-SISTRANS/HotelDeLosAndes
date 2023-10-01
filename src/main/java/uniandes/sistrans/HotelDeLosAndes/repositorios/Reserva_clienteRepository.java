@@ -31,9 +31,9 @@ public interface Reserva_clienteRepository extends JpaRepository<Reserva_cliente
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Reserva_cliente SET reserva_id=: reservaId, habitacion_id=: habitacionId, plan_consumo_id=: planConsumoId WHERE reserva_id = :reserva_id AND usuario_id = :usuario_id", nativeQuery = true)
-    void actualizarReserva_cliente(@Param("usuario_id")Integer usuario_id, @Param("reservaId")Integer reservaId, @Param("habitacionId")Integer habitacionId, @Param("planConsumoId")Integer planConsumoId);
-    
+    @Query(value = "UPDATE Reserva_cliente SET reserva_id=:reservaId, habitacion_id=:habitacionId, plan_consumo_id=:planConsumoId WHERE reserva_id = :reservaId AND usuario_id = :usuarioId", nativeQuery = true)
+    void actualizarReserva_cliente(@Param("usuarioId") Integer usuarioId, @Param("reservaId") Integer reservaId, @Param("habitacionId") Integer habitacionId, @Param("planConsumoId") Integer planConsumoId);
+
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Reserva_cliente WHERE reserva_id = :reserva_id AND usuario_id = :usuario_id", nativeQuery = true)

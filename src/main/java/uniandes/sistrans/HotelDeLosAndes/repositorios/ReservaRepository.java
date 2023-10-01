@@ -21,8 +21,8 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Reserva (id, check_in, check_out fecha_inicio, fecha_fin) VALUES (:id, :fecha_inicio, :fecha_fin)", nativeQuery = true)
-    void insertarReserva(@Param("id") Integer id, @Param("check_in") Date checkIn, @Param("check_out") Date checkOut,  @Param("fecha_inicio") Date fecha_inicio, @Param("fecha_fin") Date fecha_fin);
+    @Query(value = "INSERT INTO Reserva (id, check_in, check_out fecha_inicio, fecha_fin) VALUES (:id, :check_in, :check_out, :fecha_inicio, :fecha_fin)", nativeQuery = true)
+    void insertarReserva(@Param("id") Integer id, @Param("check_in") Date checkIn, @Param("check_out")  Date checkOut,  @Param("fecha_inicio") Date fecha_inicio, @Param("fecha_fin") Date fecha_fin);
 
 
     @Modifying
@@ -35,10 +35,10 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Query(value = "UPDATE Reserva SET check_in=:check_in, check_out=:check_out, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin WHERE id = :id", nativeQuery = true)
     void actualizarReserva(@Param("id") Integer id, @Param("check_in") Date checkIn, @Param("check_out") Date checkOut,  @Param("fecha_inicio") Date fecha_inicio, @Param("fecha_fin") Date fecha_fin);
 
+
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Reserva WHERE id = :id", nativeQuery = true)
     void eliminarReservasPorId(@Param("id") Integer id);
 
-    
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 
@@ -32,7 +33,7 @@ public class ReservaController {
 
     @GetMapping(value="/reservas/new/save")
     public String guardarReserva(@ModelAttribute Reserva reserva) {
-        reservaRepository.insertarReserva(reserva.getId(), reserva.getCheck_in(), reserva.getCheck_out(),reserva.getFecha_inicio_reserva(), reserva.getFecha_final_reserva());
+        reservaRepository.insertarReserva(reserva.getCheck_in(), reserva.getCheck_out(),reserva.getFecha_inicio_reserva(), reserva.getFecha_final_reserva());
         return "redirect:/reservas";
     }
 
