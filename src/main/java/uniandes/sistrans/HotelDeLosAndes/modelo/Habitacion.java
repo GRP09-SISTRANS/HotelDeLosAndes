@@ -13,13 +13,13 @@ public class Habitacion {
     @Id
     private Integer id;
     private Integer capacidad;
-    private Integer tipoHabitacion;
+    private Integer tipos_habitacion_id;
 
     public Habitacion(Integer Id, Integer Capacidad, Integer tipoHabitacion) {
 
         this.id = Id;
         this.capacidad = Capacidad;
-        this.tipoHabitacion = tipoHabitacion;
+        this.tipos_habitacion_id = tipoHabitacion;
     }
 
     public Habitacion()
@@ -42,11 +42,16 @@ public class Habitacion {
     }
 
     public Integer getTipoHabitacion() {
-        return tipoHabitacion;
+        return tipos_habitacion_id;
     }
 
     public void setTipoHabitacion(Integer tipoHabitacion) {
-        this.tipoHabitacion = tipoHabitacion;
+        this.tipos_habitacion_id = tipoHabitacion;
+    }
+
+    public String toString()
+    {
+        return "Habitacion [id=" + id + ", capacidad=" + capacidad + ", tipoHabitacion=" + tipos_habitacion_id + "]";
     }
 
     
