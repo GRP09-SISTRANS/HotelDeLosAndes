@@ -22,12 +22,12 @@ public class ServicioEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nombre;
-    private char tipo;
+    private String tipo;
     @OneToMany(mappedBy = "servicio")
     private List<ProductoEntity> productos;
 
     
-    public ServicioEntity(String nombre, char tipo) {
+    public ServicioEntity(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
 
@@ -42,7 +42,7 @@ public class ServicioEntity {
     public String getNombre() {
         return nombre;
     }
-    public char getTipo() {
+    public String getTipo() {
         return tipo;
     }
 

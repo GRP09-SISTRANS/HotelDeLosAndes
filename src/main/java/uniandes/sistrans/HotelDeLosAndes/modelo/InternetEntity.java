@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 @Table(name = "internet")
 @PrimaryKeyJoinColumn(name="servicio_id")
 public class InternetEntity extends ServicioEntity{
-    public InternetEntity (String nombre, char tipo){
+    public InternetEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
 }

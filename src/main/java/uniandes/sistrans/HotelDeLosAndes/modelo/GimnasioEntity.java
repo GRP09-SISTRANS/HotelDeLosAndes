@@ -12,7 +12,7 @@ public class GimnasioEntity  extends ServicioEntity{
 
 
     
-    public GimnasioEntity(String nombre, char tipo, Integer maquinas) {
+    public GimnasioEntity(String nombre, String tipo, Integer maquinas) {
         super(nombre, tipo);
         this.maquinas = maquinas;
     }

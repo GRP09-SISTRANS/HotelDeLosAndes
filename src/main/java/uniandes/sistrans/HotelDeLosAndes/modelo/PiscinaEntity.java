@@ -12,7 +12,7 @@ public class PiscinaEntity extends ServicioEntity {
     
     
     
-    public PiscinaEntity(String nombre, char tipo, Integer capacidad, Float profundidad) {
+    public PiscinaEntity(String nombre, String tipo, Integer capacidad, Float profundidad) {
         super(nombre, tipo);
         this.capacidad = capacidad;
         this.profundidad = profundidad;

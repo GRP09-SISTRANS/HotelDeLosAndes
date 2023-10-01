@@ -1,6 +1,7 @@
 package uniandes.sistrans.HotelDeLosAndes.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -144,7 +146,87 @@ public class ServicioController {
             
         }
         return "redirect:/servicios";
+
     }
+
+    @GetMapping("/servicios/{id}/edit")
+    public String serviciosEditarForm(@PathVariable("id") Long id, Model model) {
+        
+        Optional<ServicioEntity> servicioEntity = this.servicioRepository.findById(id);
+        if (servicioEntity.get() != null){
+            model.addAttribute("servicioForm", new ServicioForm(id));
+            return "servicioEditar";   
+        }
+        else{
+            return "redirect:/servicios";
+        }
+    }
+
+
+    @PostMapping("/servicios/{id}/edit/save")
+    public String servicioEditarForm(@PathVariable("id") long id, @ModelAttribute ServicioForm servicioForm) {
+        if (servicioForm.getTipoServicio().equals("Spa")){
+            SpaEntity spa = new SpaEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.spaRepository.save(spa);
+        }
+        
+        else if (servicioForm.getTipoServicio().equals("Bar")){
+            BarEntity bar = new BarEntity(servicioForm.getNombre(),servicioForm.getTipo(), servicioForm.getCapacidad(), servicioForm.getEstilo());
+            this.barRepository.save(bar);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Prestamo")){
+            PrestamoUtensiliosEntity prestamoUtensilios = new PrestamoUtensiliosEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.prestamosUtensiliosRepositoryRepository.save(prestamoUtensilios);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Salon")){
+            SalonConferenciaEntity salonConferencia = new SalonConferenciaEntity(servicioForm.getNombre(),servicioForm.getTipo(), servicioForm.getCapacidad());
+            this.salonConferenciaRepositoryRepository.save(salonConferencia);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Tienda")){
+            TiendaEntity tienda = new TiendaEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.tiendaRepositoryRepository.save(tienda);
+        }
+        else if (servicioForm.getTipoServicio().equals("Gimnasio")){
+            GimnasioEntity gimnasio = new GimnasioEntity(servicioForm.getNombre(),servicioForm.getTipo(), servicioForm.getMaquinas());
+            this.gimnasioRepository.save(gimnasio);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Internet")){
+            InternetEntity internet = new InternetEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.internetRepository.save(internet);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("SuperMercado")){
+            SuperMercadoEntity superMercado = new SuperMercadoEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.superMercadoRepositoryRepository.save(superMercado);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Piscina")){
+            PiscinaEntity piscina = new PiscinaEntity(servicioForm.getNombre(),servicioForm.getTipo(), servicioForm.getCapacidad(), servicioForm.getProfundidad());
+            this.piscinaRepository.save(piscina);
+            
+        }
+        else if (servicioForm.getTipoServicio().equals("Lavanderia")){
+            LavanderiaEntity lavanderia = new LavanderiaEntity(servicioForm.getNombre(),servicioForm.getTipo());
+            this.lavanderiaRepository.save(lavanderia);
+            
+        }
+        return "redirect:/servicios";
+    }
+
+
+
+    @GetMapping("/servicios/{id}/delete")
+    public String bebedorBorrar(@PathVariable("id") long id) {
+        this.servicioRepository.deleteById(id);
+        return "redirect:/servicios";
+    }
+
+    
+
 
     
 

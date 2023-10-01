@@ -2,19 +2,20 @@ package uniandes.sistrans.HotelDeLosAndes.modelo;
 
 public class ServicioForm {
     private String nombre;
-    private char tipo;
+    private String tipo;
     private Integer capacidad;
     private Float profundidad;
     private Integer maquinas;
     private String estilo;
     private String tipoServicio;
+    private Long id;
     
     
     
     
     public ServicioForm() {;
     }
-    public ServicioForm(String nombre, char tipo, Integer capacidad, Float profundidad, Integer maquinas, String tipoServicio,
+    public ServicioForm(String nombre, String tipo, Integer capacidad, Float profundidad, Integer maquinas, String tipoServicio,
             String estilo) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -24,16 +25,19 @@ public class ServicioForm {
         this.estilo = estilo;
         this.tipoServicio = tipoServicio;
     }
+    public ServicioForm(Long id) {
+        this.id = id;
+    }
     public String getNombre() {
         return nombre;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public char getTipo() {
+    public String getTipo() {
         return tipo;
     }
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
     public Integer getCapacidad() {
@@ -66,5 +70,13 @@ public class ServicioForm {
     public void setTipoServicio(String tipoServicio) {
         this.tipoServicio = tipoServicio;
     }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
     
 }

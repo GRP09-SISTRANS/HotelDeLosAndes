@@ -13,7 +13,7 @@ public class SalonConferenciaEntity extends ServicioEntity{
 
 
     
-    public SalonConferenciaEntity(String nombre, char tipo, Integer capacidad) {
+    public SalonConferenciaEntity(String nombre, String tipo, Integer capacidad) {
         super(nombre, tipo);
         this.capacidad = capacidad;
     }

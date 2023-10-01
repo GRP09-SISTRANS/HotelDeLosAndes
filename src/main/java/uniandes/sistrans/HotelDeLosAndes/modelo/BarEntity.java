@@ -15,12 +15,12 @@ public class BarEntity extends ServicioEntity {
     
     
     
-    public BarEntity(String nombre, char tipo, Integer capacidad, String estilo) {
+    public BarEntity(String nombre, String tipo, Integer capacidad, String estilo) {
         super(nombre, tipo);
         this.capacidad = capacidad;
         this.estilo = estilo;
     }
-    
+
     public Integer getCapacidad() {
         return capacidad;
     }

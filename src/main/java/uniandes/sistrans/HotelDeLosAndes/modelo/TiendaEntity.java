@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 @Table(name = "tienda")
 @PrimaryKeyJoinColumn(name="servicio_id")
 public class TiendaEntity extends ServicioEntity{
-    public TiendaEntity (String nombre, char tipo){
+    public TiendaEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
     
