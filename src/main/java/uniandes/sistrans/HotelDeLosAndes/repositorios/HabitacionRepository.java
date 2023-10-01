@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Habitacion;
+import uniandes.sistrans.HotelDeLosAndes.modelo.Tipos_Habitacion;
 
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>{
@@ -23,17 +24,17 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     Collection<Habitacion> darHabitacionesPorCapacidad(@Param("capacidad") Integer capacidad);
 
     @Query(value = "SELECT * FROM Habitacion WHERE tipos_habitacion_id = :tipo", nativeQuery = true)
-    Collection<Habitacion> darHabitacionesPorTipo(@Param("tipo") Integer tipo);
+    Collection<Habitacion> darHabitacionesPorTipo(@Param("tipo") Tipos_Habitacion tipo);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Habitacion (id, capacidad, tipos_habitacion_id) VALUES (:id, :capacidad, :tipo)", nativeQuery = true)
-    void insertarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Integer tipo);
+    void insertarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Tipos_Habitacion tipo);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE Habitacion SET capacidad=:capacidad, tipos_habitacion_id=:tipo WHERE id = :id", nativeQuery = true)
-    void actualizarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Integer tipo);
+    void actualizarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Tipos_Habitacion tipo);
 
     @Modifying
     @Transactional
