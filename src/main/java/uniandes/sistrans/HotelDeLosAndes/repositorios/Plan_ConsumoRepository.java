@@ -1,5 +1,7 @@
 package uniandes.sistrans.HotelDeLosAndes.repositorios;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +18,7 @@ public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Inte
     Plan_Consumo darPlan_ConsumoPorNombre(String nombre);
 
     @Query(value = "SELECT * FROM Plan_Consumo ", nativeQuery = true)
-    Plan_Consumo darPlan_Consumo();
+    Collection<Plan_Consumo> darPlan_Consumo();
 
     @Modifying
     @Transactional
