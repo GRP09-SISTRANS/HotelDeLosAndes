@@ -77,5 +77,9 @@ public class Tipos_Habitacion {
         this.television = television;
     }
 
+    public String toString(){
+        return "Tipos_Habitacion [id=" + id + ", nombre=" + nombre + ", costo=" + costo + ", minibar=" + minibar + ", cafetera=" + cafetera + ", television=" + television + "]";
+    }
+
     
 }

@@ -3,6 +3,8 @@ package uniandes.sistrans.HotelDeLosAndes.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,9 +15,12 @@ public class Habitacion {
     @Id
     private Integer id;
     private Integer capacidad;
-    private Integer tipos_habitacion_id;
 
-    public Habitacion(Integer Id, Integer Capacidad, Integer tipoHabitacion) {
+    @ManyToOne
+    @JoinColumn(name="tipos_habitacion_id", referencedColumnName="id")
+    private Tipos_Habitacion tipos_habitacion_id;
+
+    public Habitacion(Integer Id, Integer Capacidad, Tipos_Habitacion tipoHabitacion) {
 
         this.id = Id;
         this.capacidad = Capacidad;
@@ -41,11 +46,11 @@ public class Habitacion {
         this.capacidad = capacidad;
     }
 
-    public Integer getTipoHabitacion() {
+    public Tipos_Habitacion getTipoHabitacion() {
         return tipos_habitacion_id;
     }
 
-    public void setTipoHabitacion(Integer tipoHabitacion) {
+    public void setTipoHabitacion(Tipos_Habitacion tipoHabitacion) {
         this.tipos_habitacion_id = tipoHabitacion;
     }
 
