@@ -71,10 +71,10 @@ public String editReservaServicioForm(@PathVariable Long id, Model model) {
 }
 
 @PostMapping("/reservasServicios/{id}/edit/save")
-public String saveEditedReservaServicio(@PathVariable Long id, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
+public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
     Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
     Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
-    Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(id);
+    Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(idReservaServicio);
     if (producto.isPresent() && usuario.isPresent() && reservaServicio.isPresent()) {
         ReservaServicioEntity reservaServicioEntity = reservaServicio.get();
         reservaServicioEntity.setFecha(fecha);
