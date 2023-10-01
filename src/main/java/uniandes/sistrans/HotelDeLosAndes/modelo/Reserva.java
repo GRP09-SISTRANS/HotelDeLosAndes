@@ -1,13 +1,13 @@
 package uniandes.sistrans.HotelDeLosAndes.modelo;
 
 import java.sql.Date;
-import java.util.Optional;
-
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +22,9 @@ public class Reserva {
     private Date check_out;
     private Date fecha_inicio_reserva;
     private Date fecha_final_reserva;
+
+    @OneToMany(mappedBy = "reserva")
+    private List<CuentaEntity> cuentas;
 
     public Reserva(Date Check_in, Date Check_out, Date Fecha_inicio_reserva, Date Fecha_final_reserva) {
 
