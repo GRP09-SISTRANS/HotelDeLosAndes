@@ -19,15 +19,21 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     @Query(value = "SELECT * FROM Habitacion WHERE id = :id", nativeQuery = true)
     Habitacion darHabitacion(@Param("id") Integer id);
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO Habitacion (id, capacidad) VALUES (:id, :capacidad)", nativeQuery = true)
-    void insertarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad);
+    @Query(value = "SELECT * FROM Habitacion WHERE capacidad = :capacidad", nativeQuery = true)
+    Collection<Habitacion> darHabitacionesPorCapacidad(@Param("capacidad") Integer capacidad);
+
+    @Query(value = "SELECT * FROM Habitacion WHERE tipos_habitacion_id = :tipo", nativeQuery = true)
+    Collection<Habitacion> darHabitacionesPorTipo(@Param("tipo") Integer tipo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Habitacion SET capacidad=:capacidad WHERE id = :id", nativeQuery = true)
-    void actualizarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad);
+    @Query(value = "INSERT INTO Habitacion (id, capacidad, tipos_habitacion_id) VALUES (:id, :capacidad, :tipo)", nativeQuery = true)
+    void insertarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Integer tipo);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Habitacion SET capacidad=:capacidad, tipos_habitacion_id=:tipo WHERE id = :id", nativeQuery = true)
+    void actualizarHabitacion(@Param("id") Integer id,@Param("capacidad") Integer capacidad, @Param("tipo") Integer tipo);
 
     @Modifying
     @Transactional

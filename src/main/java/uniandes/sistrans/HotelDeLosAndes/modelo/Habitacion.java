@@ -13,11 +13,13 @@ public class Habitacion {
     @Id
     private Integer id;
     private Integer capacidad;
+    private Integer tipoHabitacion;
 
-    public Habitacion(Integer Id, Integer Capacidad) {
+    public Habitacion(Integer Id, Integer Capacidad, Integer tipoHabitacion) {
 
         this.id = Id;
         this.capacidad = Capacidad;
+        this.tipoHabitacion = tipoHabitacion;
     }
 
     public Habitacion()
@@ -38,4 +40,14 @@ public class Habitacion {
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }
+
+    public Integer getTipoHabitacion() {
+        return tipoHabitacion;
+    }
+
+    public void setTipoHabitacion(Integer tipoHabitacion) {
+        this.tipoHabitacion = tipoHabitacion;
+    }
+
+    
 }
