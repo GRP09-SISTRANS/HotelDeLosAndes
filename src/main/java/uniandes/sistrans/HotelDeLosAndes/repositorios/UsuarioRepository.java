@@ -2,7 +2,6 @@ package uniandes.sistrans.HotelDeLosAndes.repositorios;
 
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,7 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
     @Query(value = "SELECT * FROM Usuario WHERE nombre = :nombre", nativeQuery = true)
     Collection<Usuario> darUsuariosPorNombre(String nombre);
-    
+
 
     
 }
