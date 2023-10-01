@@ -239,10 +239,4 @@ public class ServicioController {
         this.servicioRepository.deleteById(id);
         return "redirect:/servicios";
     }
-
-    
-
-
-    
-
 }

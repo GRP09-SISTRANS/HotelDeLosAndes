@@ -1,8 +1,11 @@
 package uniandes.sistrans.HotelDeLosAndes.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class Usuario {
     private String contrasenia;
 
     private char tipo_usuario;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<ReservaServicioEntity> reservas;
 
     public Usuario(Integer Id, String Tipo_doc, String Correo, String Direccion, String Nombre, String Apellido, String Contrasenia, char Tipo_usuario) {
 
