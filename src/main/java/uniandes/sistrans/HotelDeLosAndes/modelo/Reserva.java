@@ -15,7 +15,7 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
-    private Long id;
+    private Integer id;
     private Date check_in;
     private Date check_out;
     private Date fecha_inicio_reserva;
@@ -32,11 +32,11 @@ public class Reserva {
     public Reserva()
     {;}
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
