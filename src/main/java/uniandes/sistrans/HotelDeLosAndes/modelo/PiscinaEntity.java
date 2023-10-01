@@ -17,6 +17,11 @@ public class PiscinaEntity extends ServicioEntity {
         this.capacidad = capacidad;
         this.profundidad = profundidad;
     }
+
+    public PiscinaEntity() {
+        super();
+        
+    }
     public Integer getCapacidad() {
         return capacidad;
     }

@@ -17,6 +17,10 @@ public class GimnasioEntity  extends ServicioEntity{
         this.maquinas = maquinas;
     }
 
+    public GimnasioEntity() {
+        super();
+    }
+
     public Integer getMaquinas() {
         return maquinas;
     }

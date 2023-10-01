@@ -11,4 +11,8 @@ public class SpaEntity extends ServicioEntity {
     public SpaEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
+    public SpaEntity() {
+        super();
+        
+    }
 }

@@ -20,6 +20,9 @@ public class BarEntity extends ServicioEntity {
         this.capacidad = capacidad;
         this.estilo = estilo;
     }
+    public BarEntity() {
+        super();
+    }
 
     public Integer getCapacidad() {
         return capacidad;

@@ -10,5 +10,10 @@ public class TiendaEntity extends ServicioEntity{
     public TiendaEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
+
+    public TiendaEntity() {
+        super();
+        
+    }
     
 }

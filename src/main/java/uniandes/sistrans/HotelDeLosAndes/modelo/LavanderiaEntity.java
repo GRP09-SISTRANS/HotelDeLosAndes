@@ -11,4 +11,8 @@ public class LavanderiaEntity extends ServicioEntity {
     public LavanderiaEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
+    public LavanderiaEntity() {
+        super();
+        
+    }
 }

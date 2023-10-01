@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.ui.Model;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.BarEntity;
@@ -42,8 +44,10 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.SuperMercadoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.TiendaRepository;
 
 
-//@RequestMapping("/servicios")
+
 @Controller
+@RestController
+
 public class ServicioController {
     @Autowired
     private ServicioRepository servicioRepository;
@@ -79,12 +83,20 @@ public class ServicioController {
     private LavanderiaRepository lavanderiaRepository;
 
     
-
+    /* 
     @GetMapping("/servicios")
     public String bares(Model model, String ciudad, String tipo) {
         model.addAttribute("servicios", this.servicioRepository.findAll());
         
         return "servicios";
+    }
+    */
+
+    @GetMapping("/servicios")
+    public List<ServicioEntity> servicios(Model model, String ciudad, String tipo) {
+        model.addAttribute("servicios", this.servicioRepository.findAll());
+        
+        return this.servicioRepository.findAll();
     }
     
 
@@ -95,6 +107,7 @@ public class ServicioController {
     }
 
     @PostMapping("/servicios/new/save")
+    @Transactional
     public String barGuardar(@ModelAttribute ServicioForm servicioForm) {
         if (servicioForm.getTipoServicio().equals("Spa")){
             SpaEntity spa = new SpaEntity(servicioForm.getNombre(),servicioForm.getTipo());
@@ -164,6 +177,7 @@ public class ServicioController {
 
 
     @PostMapping("/servicios/{id}/edit/save")
+    @Transactional
     public String servicioEditarForm(@PathVariable("id") long id, @ModelAttribute ServicioForm servicioForm) {
         if (servicioForm.getTipoServicio().equals("Spa")){
             SpaEntity spa = new SpaEntity(servicioForm.getNombre(),servicioForm.getTipo());
@@ -220,6 +234,7 @@ public class ServicioController {
 
 
     @GetMapping("/servicios/{id}/delete")
+    @Transactional
     public String bebedorBorrar(@PathVariable("id") long id) {
         this.servicioRepository.deleteById(id);
         return "redirect:/servicios";

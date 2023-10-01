@@ -10,4 +10,9 @@ public class InternetEntity extends ServicioEntity{
     public InternetEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
+
+    public InternetEntity() {
+        super();
+        
+    }
 }

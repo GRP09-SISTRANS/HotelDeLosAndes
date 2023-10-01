@@ -18,6 +18,11 @@ public class SalonConferenciaEntity extends ServicioEntity{
         this.capacidad = capacidad;
     }
 
+    public SalonConferenciaEntity() {
+        super();
+        
+    }
+
     public Integer getCapacidad() {
         return capacidad;
     }

@@ -10,5 +10,8 @@ public class PrestamoUtensiliosEntity extends ServicioEntity{
     public PrestamoUtensiliosEntity (String nombre, String tipo){
         super(nombre,tipo);
     }
-    
+    public PrestamoUtensiliosEntity() {
+        super();
+        
+    }
 }

@@ -28,6 +28,65 @@ public class ProductoEntity {
 
     @OneToMany(mappedBy = "producto")
     private List<CuentaEntity> cuentas;
+
+
+    
+    public ProductoEntity() {;
+    }
+
+    
+
+    public ProductoEntity(String nombre, Integer costo, ServicioEntity servicio, List<CuentaEntity> cuentas) {
+        this.nombre = nombre;
+        this.costo = costo;
+        this.servicio = servicio;
+        this.cuentas = cuentas;
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getCosto() {
+        return costo;
+    }
+
+    public void setCosto(Integer costo) {
+        this.costo = costo;
+    }
+
+    public ServicioEntity getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(ServicioEntity servicio) {
+        this.servicio = servicio;
+    }
+
+    public List<CuentaEntity> getCuentas() {
+        return cuentas;
+    }
+
+    public void setCuentas(List<CuentaEntity> cuentas) {
+        this.cuentas = cuentas;
+    }
+
+
+    
 }
 
 
