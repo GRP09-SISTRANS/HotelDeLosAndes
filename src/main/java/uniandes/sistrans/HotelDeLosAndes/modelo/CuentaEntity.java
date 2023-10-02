@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name = "cuenta")
 public class CuentaEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private Long id;
 
     @ManyToOne

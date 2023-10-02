@@ -15,8 +15,6 @@ import jakarta.persistence.Table;
 public class Reserva {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-
     private Integer id;
     private Date check_in;
     private Date check_out;
