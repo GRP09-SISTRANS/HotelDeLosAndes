@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 @Table(name= "reserva_servicio")
 public class ReservaServicioEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Date fecha;
     @ManyToOne

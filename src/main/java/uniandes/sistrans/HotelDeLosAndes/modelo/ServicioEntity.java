@@ -19,7 +19,6 @@ import jakarta.persistence.Table;
 
 public class ServicioEntity {
     @Id
-   
     private Long id;
     private String nombre;
     private String tipo;
