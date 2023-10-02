@@ -5,33 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Tipo habitaciones</title>
+    <title>Usuarios</title>
   </head>
   <body>
     <div class="h-screen bg-gray-800">
       <header class="flex items-center justify-center gap-x-40 bg-blue-700 p-6">
-        <h1 class="text-4xl font-semibold text-white">Tipos habitacion</h1>
+        <h1 class="text-4xl font-semibold text-white">Tipos usuario</h1>
       </header>
       <main class="flex items-center justify-center mt-6">
         <table class="bg-gray-600 rounded border border-white">
           <thead>
             <tr class="text-white text-2xl">
               <th class="px-4 py-2">ID</th>
+              <th class="px-4 py-2">Tipo Doc</th>
+              <th class="px-4 py-2">Correo</th>
+              <th class="px-4 py-2">Direccion</th>
               <th class="px-4 py-2">Nombre</th>
-              <th class="px-4 py-2">Costo</th>
-              <th class="px-4 py-2">Minibar</th>
-              <th class="px-4 py-2">Cafetera</th>
-              <th class="px-4 py-2">Television</th>
+              <th class="px-4 py-2">Apellido</th>
+              <th class="px-4 py-2">Contraseña</th>
+              <th class="px-4 py-2">Tipo usuario</th>
             </tr>
           </thead>
-          <th:block th:each="hbt : ${tipos_habitacion}">
+          <th:block th:each="hbt : ${usuarios}">
             <tr class="text-xl text-center">
               <td th:text="${hbt.id}"></td>
+              <td th:text="${hbt.tipo_doc}"></td>
+              <td th:text="${hbt.correo}"></td>
+              <td th:text="${hbt.direccion}"></td>
               <td th:text="${hbt.nombre}"></td>
-              <td th:text="${hbt.costo}"></td>
-              <td th:text="${hbt.minibar}"></td>
-              <td th:text="${hbt.cafetera}"></td>
-              <td th:text="${hbt.television}"></td>
+              <td th:text="${hbt.apellido}"></td>
+              <td th:text="${hbt.contrasenia}"></td>
+              <td th:text="${hbt.tipo_usuario}"></td>
             </tr>
           </th:block>
         </table>
