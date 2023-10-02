@@ -36,6 +36,14 @@
               <td th:text="${hbt.apellido}"></td>
               <td th:text="${hbt.contrasenia}"></td>
               <td th:text="${hbt.tipo_usuario}"></td>
+              <td>
+                <a th:href="@{usuarios/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{usuarios/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>

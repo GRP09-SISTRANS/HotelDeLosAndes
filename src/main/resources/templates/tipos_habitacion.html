@@ -32,6 +32,14 @@
               <td th:text="${hbt.minibar}"></td>
               <td th:text="${hbt.cafetera}"></td>
               <td th:text="${hbt.television}"></td>
+              <td>
+                <a th:href="@{tipos_habitacion/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{tipos_habitacion/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>

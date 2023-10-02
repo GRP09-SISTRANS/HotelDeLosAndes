@@ -26,6 +26,14 @@
               <td th:text="${hbt.id}"></td>
               <td th:text="${hbt.nombre}"></td>
               <td class="max-w-[400px]" th:text="${hbt.descripcion}"></td>
+              <td>
+                <a th:href="@{planes_consumo/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{planes_consumo/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>
