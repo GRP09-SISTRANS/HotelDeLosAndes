@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
@@ -21,7 +19,6 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ServicioRepository;
 
 @Controller
-@RestController
 public class ProductoController {
      @Autowired
     private ProductoRepository productoRepository;

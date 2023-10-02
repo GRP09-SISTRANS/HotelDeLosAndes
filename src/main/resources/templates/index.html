@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hotel de los Andes</title>
+  </head>
+  <body>
+    <div class="h-screen bg-gray-800">
+      <header class="flex items-center justify-center gap-x-40 bg-blue-700 p-6">
+        <h1 class="text-4xl font-semibold text-white">API Hotel De Los Andes</h1>
+        <div class="text-xl text-white">
+          <a th:href="@{/habitaciones}" class="cursor-pointer">Habitaciones</a>
+          <a th:href="@{/bares}" class="mx-4 cursor-pointer">Bares</a>
+          <a th:href="@{/bebidas}" class="cursor-pointer">Bebidas</a>
+        </div>
+      </header>
+      <main class="p-5">
+        <p class="text-xl text-white">Descripción de la API (favor de incluir)</p>
+      </main>
+    </div>
+  </body>
+</html>

@@ -6,13 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Plan_Consumo;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.Plan_ConsumoRepository;
 
 @Controller
-@RestController
 public class Plan_ConsumoController {
 
     @Autowired

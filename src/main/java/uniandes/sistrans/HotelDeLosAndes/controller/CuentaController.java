@@ -21,7 +21,6 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 
 
 @Controller
-
 public class CuentaController {
       @Autowired
     private CuentaRepository cuentaRepository;

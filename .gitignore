@@ -6,3 +6,6 @@ target/
 
 ### VS Code ###
 .vscode/
+
+### CREDNS  ### 
+src/main/resources/application.properties

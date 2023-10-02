@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habitaciones</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <h1 class="text-4xl font-semibold">Habitaciones</h1>
+  <table class="">
+    <thead class="">
+        <tr>
+            <th>ID</th>
+            <th>Capacidad</th>
+            <th>Tipo habitación</th>
+        </tr>
+    </thead>
+    <th:block th:each="habitacion : ${habitacion}">
+        <tr>
+            <td th:text="${habitacion.id}"></td>
+            <td th:text="${habitacion.capacidad}"></td>
+            <td th:text="${habitacion.tipos_habitacion_id}"></td>
+            <!-- <td>
+                <a th:href="@{bares/{id}/edit(id=${bar.id})}">Editar</a>
+                <a
+                  th:href="@{bares/{id}/delete(id=${bar.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')">
+                  Borrar
+                </a>
+            </td> -->
+        </tr>
+    </th:block>
+  </table>
+</body>
+</html>

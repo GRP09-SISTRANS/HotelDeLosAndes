@@ -6,13 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Tipos_Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.Tipos_HabitacionRepository;
 
 @Controller
-@RestController
 public class Tipos_HabitacionController {
 
     @Autowired

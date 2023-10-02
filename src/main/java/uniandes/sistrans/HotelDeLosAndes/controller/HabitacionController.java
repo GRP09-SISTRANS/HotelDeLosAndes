@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.HabitacionRepository;
@@ -14,7 +13,6 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.Tipos_HabitacionRepository
 
 
 @Controller
-@RestController
 public class HabitacionController {
 
     @Autowired
@@ -26,7 +24,7 @@ public class HabitacionController {
     @GetMapping(value="/habitaciones")
     public String habitacion(Model model) {
         model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
-        return model.toString();
+        return "habitaciones";
     }
 
     @GetMapping(value="/habitaciones/new")
