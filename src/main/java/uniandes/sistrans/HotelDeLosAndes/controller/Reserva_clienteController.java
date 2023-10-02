@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Plan_Consumo;
@@ -52,6 +51,6 @@ public class Reserva_clienteController {
         Habitacion habitacion = habitacionRepository.darHabitacion(idHabitacion);
         Plan_Consumo planConsumo = planConsumoRepository.darPlan_ConsumoPorId(idPlanConsumo);
         reserva_clienteRepository.insertarReserva_cliente(reserva.getId(), usuario.getId(), habitacion.getId(), planConsumo.getId());
-        return "redirect:/reserva_cliente";
+        return "redirect:/reservas";
     }
 }

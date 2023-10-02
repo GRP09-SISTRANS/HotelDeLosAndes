@@ -16,10 +16,10 @@ public class Plan_ConsumoController {
     @Autowired
     private Plan_ConsumoRepository plan_consumoRepository;
 
-    @GetMapping(value="/plan_consumo")
+    @GetMapping(value="/planes_consumo")
     public String plan_consumo(Model model) {
         model.addAttribute("plan_consumo", plan_consumoRepository.darPlan_Consumo());
-        return "plan_consumo";
+        return "planes_consumo";
     }
 
     @GetMapping(value="/plan_consumo/new")

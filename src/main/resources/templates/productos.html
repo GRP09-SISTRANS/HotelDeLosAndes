@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Productos</title>
+  </head>
+  <body>
+    <div class="h-screen bg-gray-800">
+      <header class="flex items-center justify-center gap-x-40 bg-blue-700 p-6">
+        <h1 class="text-4xl font-semibold text-white">Productos</h1>
+      </header>
+      <main class="flex items-center justify-center mt-6">
+        <table class="bg-gray-600 rounded border border-white">
+          <thead>
+            <tr class="text-white text-2xl">
+              <th class="px-4 py-2">ID</th>
+              <th class="px-4 py-2">Servicio ID</th>
+              <th class="px-4 py-2">Nombre</th>
+              <th class="px-4 py-2">Costo</th>
+            </tr>
+          </thead>
+          <th:block th:each="hbt : ${productos}">
+            <tr class="text-xl text-center">
+              <td th:text="${hbt.id}"></td>
+              <td th:text="${hbt.servicio_id}"></td>
+              <td th:text="${hbt.nombre}"></td>
+              <td th:text="${hbt.costo}"></td>
+            </tr>
+          </th:block>
+        </table>
+      </main>
+    </div>
+  </body>
+</html>

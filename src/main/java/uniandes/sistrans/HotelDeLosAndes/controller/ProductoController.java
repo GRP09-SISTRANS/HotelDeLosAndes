@@ -1,6 +1,5 @@
 package uniandes.sistrans.HotelDeLosAndes.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
@@ -30,10 +27,9 @@ public class ProductoController {
     private ServicioRepository servicioRepository;
 
   
-
     @GetMapping("/productos")
     public String productos(Model model, String ciudad, String tipo) {
-        model.addAttribute("Productos", this.productoRepository.findAll());
+        model.addAttribute("productos", this.productoRepository.findAll());
         return "productos";
     }
 
