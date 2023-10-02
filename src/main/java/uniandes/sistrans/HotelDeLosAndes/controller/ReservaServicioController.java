@@ -34,7 +34,7 @@ public class ReservaServicioController {
     @GetMapping(value="/reservasServicios")
     public String habitacion(Model model) {
         model.addAttribute("reservasServicios", this.reservaServicioRepository.findAll());
-        return model.toString();
+        return "reservasServicios";
     }
 
     @GetMapping("/reservasServicios/new")

@@ -19,7 +19,7 @@ public class Tipos_HabitacionController {
     @GetMapping(value="/tipos_habitacion")
     public String tipos_Habitacion(Model model) {
         model.addAttribute("tipos_habitacion", tipos_HabitacionRepository.darTipos_Habitacion());
-        return model.toString();
+        return "tipos_habitacion";
     }
 
     @GetMapping(value="/tipos_habitacion/new")

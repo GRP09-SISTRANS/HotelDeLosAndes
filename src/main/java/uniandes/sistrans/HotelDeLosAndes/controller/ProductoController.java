@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
@@ -19,6 +21,7 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ServicioRepository;
 
 @Controller
+
 public class ProductoController {
      @Autowired
     private ProductoRepository productoRepository;
@@ -29,9 +32,9 @@ public class ProductoController {
   
 
     @GetMapping("/productos")
-    public List<ProductoEntity> productos(Model model, String ciudad, String tipo) {
+    public String productos(Model model, String ciudad, String tipo) {
         model.addAttribute("Productos", this.productoRepository.findAll());
-        return this.productoRepository.findAll();
+        return "productos";
     }
 
     @GetMapping("/productos/new")

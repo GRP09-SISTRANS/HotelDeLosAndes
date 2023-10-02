@@ -86,10 +86,10 @@ public class ServicioController {
     */
 
     @GetMapping("/servicios")
-    public List<ServicioEntity> servicios(Model model, String ciudad, String tipo) {
+    public String servicios(Model model, String ciudad, String tipo) {
         model.addAttribute("servicios", this.servicioRepository.findAll());
         
-        return this.servicioRepository.findAll();
+        return "servicios";
     }
     
 

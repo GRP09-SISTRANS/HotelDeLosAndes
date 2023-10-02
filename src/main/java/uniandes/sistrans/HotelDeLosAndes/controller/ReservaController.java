@@ -6,12 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 
 @Controller
+
 public class ReservaController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class ReservaController {
     @GetMapping(value="/reservas")
     public String reserva(Model model) {
         model.addAttribute("reservas", reservaRepository.darReservas());
-        return model.toString();
+        return "reservas";
     }
 
     @GetMapping(value="/reservas/new")
