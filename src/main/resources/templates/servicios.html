@@ -24,6 +24,14 @@
             <tr class="text-xl text-center">
               <td th:text="${hbt.id}"></td>
               <td th:text="${hbt.nombre}"></td>
+              <td>
+                <a th:href="@{servicios/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{servicios/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>

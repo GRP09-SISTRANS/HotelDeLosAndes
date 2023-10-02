@@ -29,6 +29,14 @@
               <td th:text="${hbt.check_out}"></td>
               <td th:text="${hbt.fecha_inicio_reserva}"></td>
               <td th:text="${hbt.fecha_final_reserva}"></td>
+              <td>
+                <a th:href="@{reservas/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{reservas/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>

@@ -28,6 +28,14 @@
               <td th:text="${hbt.reserva_id}"></td>
               <td th:text="${hbt.producto_id}"></td>
               <td th:text="${hbt.cantidad}"></td>
+              <td>
+                <a th:href="@{cuentas/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{cuentas/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
             </tr>
           </th:block>
         </table>

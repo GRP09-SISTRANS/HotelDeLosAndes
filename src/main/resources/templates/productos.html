@@ -17,7 +17,8 @@
           <thead>
             <tr class="text-white text-2xl">
               <th class="px-4 py-2">ID</th>
-              <th class="px-4 py-2">Servicio ID</th>
+              <th class="px-4 py-2">Servicio</th>
+              <th class="px-4 py-2">Servicio Id</th>
               <th class="px-4 py-2">Nombre</th>
               <th class="px-4 py-2">Costo</th>
             </tr>
@@ -25,9 +26,19 @@
           <th:block th:each="hbt : ${productos}">
             <tr class="text-xl text-center">
               <td th:text="${hbt.id}"></td>
-              <td th:text="${hbt.servicio_id}"></td>
+              <td th:text="${hbt.servicio.nombre}"></td>
+              <td th:text="${hbt.servicio.id}"></td>
               <td th:text="${hbt.nombre}"></td>
               <td th:text="${hbt.costo}"></td>
+              <td>
+                <a th:href="@{productos/{id}/edit(id=${hbt.id})}">Editar</a>
+                <a
+                  th:href="@{productos/{id}/delete(id=${hbt.id})}"
+                  onclick="return confirm('¿Estás seguro de borrar este bar?')"
+                >
+                  Borrar
+                </a>
+              </td>
             </tr>
           </th:block>
         </table>
