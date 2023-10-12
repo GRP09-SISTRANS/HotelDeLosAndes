@@ -4,12 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name="tipos_habitacion")
 public class Tipos_Habitacion {
-
     @Id
     private Integer id;
+
     private String nombre;
     private Integer costo;
     private boolean minibar;
@@ -17,7 +18,6 @@ public class Tipos_Habitacion {
     private boolean television;
 
     public Tipos_Habitacion(Integer Id, String Nombre, Integer Costo, boolean Minibar, boolean Cafetera, boolean Television) {
-
         this.id = Id;
         this.nombre = Nombre;
         this.costo = Costo;
@@ -26,8 +26,7 @@ public class Tipos_Habitacion {
         this.television = Television;
     }
 
-    public Tipos_Habitacion()
-    {;}
+    public Tipos_Habitacion() {;}
 
     public Integer getId() {
         return id;
@@ -80,6 +79,4 @@ public class Tipos_Habitacion {
     public String toString(){
         return "Tipos_Habitacion [id=" + id + ", nombre=" + nombre + ", costo=" + costo + ", minibar=" + minibar + ", cafetera=" + cafetera + ", television=" + television + "]";
     }
-
-    
 }

@@ -13,7 +13,6 @@ import uniandes.sistrans.HotelDeLosAndes.modelo.Tipos_Habitacion;
 
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>{
-
     @Query(value = "SELECT * FROM Habitacion", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
@@ -39,9 +38,5 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Habitacion WHERE id = :id", nativeQuery = true)
-    void eliminarHabitacion(@Param("id") Integer id);
-
-    
+    void eliminarHabitacion(@Param("id") Integer id);    
 }
-    
-

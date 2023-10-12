@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SuperMercadoRepository extends JpaRepository<SuperMercadoEntity, Long> {
-    // métodos de consulta personalizados si los necesitas
+
 }

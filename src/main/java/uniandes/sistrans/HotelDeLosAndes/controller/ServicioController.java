@@ -1,7 +1,8 @@
 package uniandes.sistrans.HotelDeLosAndes.controller;
 
-import java.util.List;
 import java.util.Optional;
+
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import jakarta.transaction.Transactional;
-
 import org.springframework.ui.Model;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.BarEntity;
@@ -37,7 +35,6 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ServicioRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.SpaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.SuperMercadoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.TiendaRepository;
-
 
 
 @Controller
@@ -75,23 +72,12 @@ public class ServicioController {
     @Autowired
     private LavanderiaRepository lavanderiaRepository;
 
-    
-    /* 
-    @GetMapping("/servicios")
-    public String bares(Model model, String ciudad, String tipo) {
-        model.addAttribute("servicios", this.servicioRepository.findAll());
-        
-        return "servicios";
-    }
-    */
-
     @GetMapping("/servicios")
     public String servicios(Model model, String ciudad, String tipo) {
         model.addAttribute("servicios", this.servicioRepository.findAll());
         
         return "servicios";
     }
-    
 
     @GetMapping("/servicios/new")
     public String barForm(Model model) {
@@ -157,7 +143,6 @@ public class ServicioController {
 
     @GetMapping("/servicios/{id}/edit")
     public String serviciosEditarForm(@PathVariable("id") Long id, Model model) {
-        
         Optional<ServicioEntity> servicioEntity = this.servicioRepository.findById(id);
         if (servicioEntity.get() != null){
             model.addAttribute("servicioForm", new ServicioForm(id));
@@ -167,7 +152,6 @@ public class ServicioController {
             return "redirect:/servicios";
         }
     }
-
 
     @PostMapping("/servicios/{id}/edit/save")
     @Transactional
@@ -223,8 +207,6 @@ public class ServicioController {
         }
         return "redirect:/servicios";
     }
-
-
 
     @GetMapping("/servicios/{id}/delete")
     @Transactional

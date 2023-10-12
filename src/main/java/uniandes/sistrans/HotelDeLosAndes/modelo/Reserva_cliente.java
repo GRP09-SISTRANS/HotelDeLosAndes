@@ -6,10 +6,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name="reserva_cliente")
 public class Reserva_cliente {
-
     @EmbeddedId
     private Reserva_clientePK pk;
 
@@ -22,15 +22,12 @@ public class Reserva_cliente {
     private Plan_Consumo Plan_consumo_id;
 
     public Reserva_cliente(Usuario Usuario_id,Reserva Reserva_id, Habitacion Habitacion_id, Plan_Consumo Plan_consumo_id) {
-
         this.pk = new Reserva_clientePK(Usuario_id, Reserva_id);
         this.Habitacion_id = Habitacion_id;
         this.Plan_consumo_id = Plan_consumo_id;
-
     }
 
-    public Reserva_cliente()
-    {;}
+    public Reserva_cliente() {;}
 
     public Reserva_clientePK getPk() {
         return pk;
@@ -55,5 +52,4 @@ public class Reserva_cliente {
     public void setPlan_consumo_id(Plan_Consumo plan_consumo_id) {
         Plan_consumo_id = plan_consumo_id;
     }
-    
 }

@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.sistrans.HotelDeLosAndes.modelo.Plan_Consumo;
 
-public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Integer> {
 
+public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Integer> {
     @Query(value = "SELECT * FROM Plan_Consumo WHERE id = :id", nativeQuery = true)
     Plan_Consumo darPlan_ConsumoPorId(Integer id);
 
@@ -34,6 +34,5 @@ public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Inte
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Plan_Consumo WHERE id = :id", nativeQuery = true)
-    void eliminarPlan_Consumo(Integer id);
-    
+    void eliminarPlan_Consumo(Integer id);    
 }

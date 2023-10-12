@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SpaRepository extends JpaRepository<SpaEntity, Long> {
-    // métodos de consulta personalizados si los necesitas
+
 }

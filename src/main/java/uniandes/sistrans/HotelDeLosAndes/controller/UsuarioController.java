@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Usuario;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.UsuarioRepository;
 
+
 @Controller
 public class UsuarioController {
-
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -56,6 +56,4 @@ public class UsuarioController {
         usuarioRepository.eliminarUsuario(id);
         return "redirect:/usuarios";
     }
-
-    
 }

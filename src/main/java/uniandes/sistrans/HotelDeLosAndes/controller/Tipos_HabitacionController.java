@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Tipos_Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.Tipos_HabitacionRepository;
 
+
 @Controller
 public class Tipos_HabitacionController {
-
     @Autowired
     private Tipos_HabitacionRepository tipos_HabitacionRepository;
 
@@ -37,10 +37,10 @@ public class Tipos_HabitacionController {
     @GetMapping(value="/tipos_habitacion/{id}/edit")
     public String editarTipos_HabitacionForm(@PathVariable Integer id, Model model) {
         Tipos_Habitacion tipos_Habitacion = tipos_HabitacionRepository.darTipos_Habitacion(id);
-        if(tipos_Habitacion != null) {
+        if (tipos_Habitacion != null) {
             model.addAttribute("tipos_habitacion", tipos_Habitacion);
             return "tipos_habitacionEditar";
-        }else{
+        } else {
             return "redirect:/tipos_habitacion";
         }
     }
@@ -56,6 +56,4 @@ public class Tipos_HabitacionController {
         tipos_HabitacionRepository.eliminarTipos_Habitacion(id);
         return "redirect:/tipos_habitacion";
     }
-
-    
 }

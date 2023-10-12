@@ -8,10 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name="usuario")
 public class Usuario {
-
     @Id
     private Integer id;
 
@@ -19,22 +19,16 @@ public class Usuario {
     private String tipo_doc;
 
     private String correo;
-
     private String direccion;
-
     private String nombre;
-
     private String apellido;
-
     private String contrasenia;
-
     private char tipo_usuario;
 
     @OneToMany(mappedBy = "usuario")
     private List<ReservaServicioEntity> reservas;
 
     public Usuario(Integer Id, String Tipo_doc, String Correo, String Direccion, String Nombre, String Apellido, String Contrasenia, char Tipo_usuario) {
-
         this.id = Id;
         this.tipo_doc = Tipo_doc;
         this.correo = Correo;
@@ -45,8 +39,7 @@ public class Usuario {
         this.tipo_usuario = Tipo_usuario;
     }
 
-    public Usuario()
-    {;}
+    public Usuario() {;}
 
     public Integer getId() {
         return id;
@@ -111,6 +104,4 @@ public class Usuario {
     public void setTipo_usuario(char tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
     }
-
-    
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Plan_Consumo;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.Plan_ConsumoRepository;
 
+
 @Controller
 public class Plan_ConsumoController {
-
     @Autowired
     private Plan_ConsumoRepository plan_consumoRepository;
 
@@ -56,7 +56,4 @@ public class Plan_ConsumoController {
         plan_consumoRepository.eliminarPlan_Consumo(id);
         return "redirect:/plan_consumo";
     }
-
-
-    
 }

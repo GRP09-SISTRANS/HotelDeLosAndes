@@ -17,16 +17,15 @@ import uniandes.sistrans.HotelDeLosAndes.modelo.ServicioEntity;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ServicioRepository;
 
-@Controller
 
+@Controller
 public class ProductoController {
-     @Autowired
+    @Autowired
     private ProductoRepository productoRepository;
 
     @Autowired
     private ServicioRepository servicioRepository;
 
-  
     @GetMapping("/productos")
     public String productos(Model model, String ciudad, String tipo) {
         model.addAttribute("productos", this.productoRepository.findAll());
@@ -72,5 +71,4 @@ public class ProductoController {
         this.productoRepository.deleteById(id);
         return "redirect:/productos";
     }
-
 }

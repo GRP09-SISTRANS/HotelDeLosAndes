@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
-
-
     @Query(value = "SELECT * FROM Reserva WHERE id = :id", nativeQuery = true)
     Reserva darReservaPorId(@Param("id") Integer id);
 
@@ -40,5 +38,4 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Transactional
     @Query(value = "DELETE FROM Reserva WHERE id = :id", nativeQuery = true)
     void eliminarReservasPorId(@Param("id") Integer id);
-
 }

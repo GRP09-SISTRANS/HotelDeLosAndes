@@ -9,7 +9,6 @@ import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class Reserva_clientePK implements Serializable{
-
     @ManyToOne
     @JoinColumn(name="Usuario_id", referencedColumnName="id")
     private Usuario Usuario_id;
@@ -24,8 +23,7 @@ public class Reserva_clientePK implements Serializable{
         this.Reserva_id = Reserva_id;
     }
 
-    public Reserva_clientePK()
-    {;}
+    public Reserva_clientePK() {;}
 
     public Usuario getUsuario_id() {
         return Usuario_id;
@@ -42,6 +40,4 @@ public class Reserva_clientePK implements Serializable{
     public void setReserva_id(Reserva reserva_id) {
         Reserva_id = reserva_id;
     }
-    
-    
 }

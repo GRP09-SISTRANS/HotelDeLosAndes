@@ -7,14 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 
+
 @Controller
-
 public class ReservaController {
-
     @Autowired
     private ReservaRepository reservaRepository;
 
@@ -58,5 +56,4 @@ public class ReservaController {
         reservaRepository.eliminarReservasPorId(id);
         return "redirect:/reservas";
     }
-    
 }

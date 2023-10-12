@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-
     @Query(value = "SELECT * FROM Usuario WHERE id = :id", nativeQuery = true)
     Usuario darUsuario(Integer id);
 
@@ -49,5 +48,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     @Transactional
     @Query(value = "DELETE FROM Usuario WHERE id = :id", nativeQuery = true)
     void eliminarUsuario(Integer id);
-    
 }

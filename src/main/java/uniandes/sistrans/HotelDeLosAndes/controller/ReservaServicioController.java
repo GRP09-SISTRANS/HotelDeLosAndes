@@ -19,9 +19,9 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaServicioRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.UsuarioRepository;
 
+
 @Controller
 public class ReservaServicioController {
-
     @Autowired
     private ProductoRepository productoRepository;
 
@@ -62,33 +62,33 @@ public class ReservaServicioController {
     }
 
     @GetMapping("/reservasServicios/{id}/edit")
-public String editReservaServicioForm(@PathVariable Long id, Model model) {
-    Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(id);
-    if (reservaServicio.isPresent()) {
-        model.addAttribute("reservaServicio", reservaServicio.get());
-        model.addAttribute("productos", this.productoRepository.findAll());
-        model.addAttribute("usuarios", this.usuarioRepository.findAll());
-        return "reservaServicioEdit";
-    } else {
+    public String editReservaServicioForm(@PathVariable Long id, Model model) {
+        Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(id);
+        if (reservaServicio.isPresent()) {
+            model.addAttribute("reservaServicio", reservaServicio.get());
+            model.addAttribute("productos", this.productoRepository.findAll());
+            model.addAttribute("usuarios", this.usuarioRepository.findAll());
+            return "reservaServicioEdit";
+        } else {
+            return "redirect:/reservasServicios";
+        }
+    }
+
+    @PostMapping("/reservasServicios/{id}/edit/save")
+    @Transactional
+    public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
+        Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
+        Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
+        Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(idReservaServicio);
+        if (producto.isPresent() && usuario.isPresent() && reservaServicio.isPresent()) {
+            ReservaServicioEntity reservaServicioEntity = reservaServicio.get();
+            reservaServicioEntity.setFecha(fecha);
+            reservaServicioEntity.setProducto(producto.get());
+            reservaServicioEntity.setUsuario(usuario.get());
+            this.reservaServicioRepository.save(reservaServicioEntity);
+        }
         return "redirect:/reservasServicios";
     }
-}
-
-@PostMapping("/reservasServicios/{id}/edit/save")
-@Transactional
-public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
-    Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
-    Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
-    Optional<ReservaServicioEntity> reservaServicio = this.reservaServicioRepository.findById(idReservaServicio);
-    if (producto.isPresent() && usuario.isPresent() && reservaServicio.isPresent()) {
-        ReservaServicioEntity reservaServicioEntity = reservaServicio.get();
-        reservaServicioEntity.setFecha(fecha);
-        reservaServicioEntity.setProducto(producto.get());
-        reservaServicioEntity.setUsuario(usuario.get());
-        this.reservaServicioRepository.save(reservaServicioEntity);
-    }
-    return "redirect:/reservasServicios";
-}
 
     @GetMapping(value="/reservasServicios/{id}/delete")
     @Transactional
@@ -96,6 +96,4 @@ public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @M
         reservaServicioRepository.deleteById(id);
         return "redirect:/reservasServicios";
     }
-    
-    
 }

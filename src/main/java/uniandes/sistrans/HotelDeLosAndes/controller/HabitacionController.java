@@ -14,7 +14,6 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.Tipos_HabitacionRepository
 
 @Controller
 public class HabitacionController {
-
     @Autowired
     private HabitacionRepository habitacionRepository;
 
@@ -61,8 +60,5 @@ public class HabitacionController {
     public String eliminarHabitacion(@PathVariable Integer id) {
         habitacionRepository.eliminarHabitacion(id);
         return "habitacion";
-    }
-
-    
-    
+    } 
 }

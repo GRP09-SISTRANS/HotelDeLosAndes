@@ -1,7 +1,9 @@
 package uniandes.sistrans.HotelDeLosAndes.modelo;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "internet")
@@ -13,6 +15,5 @@ public class InternetEntity extends ServicioEntity{
 
     public InternetEntity() {
         super();
-        
     }
 }

@@ -17,10 +17,9 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.Reserva_clienteRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositorios.UsuarioRepository;
 
+
 @Controller
-
 public class Reserva_clienteController {
-
     @Autowired
     private Reserva_clienteRepository reserva_clienteRepository;
 

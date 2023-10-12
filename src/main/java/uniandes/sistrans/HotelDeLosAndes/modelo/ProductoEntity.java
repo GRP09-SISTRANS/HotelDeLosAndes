@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "producto")
 public class ProductoEntity {
@@ -16,7 +17,6 @@ public class ProductoEntity {
     private Long id;
     
     private String nombre;
-    
     private Integer costo;
     
     @ManyToOne
@@ -26,12 +26,7 @@ public class ProductoEntity {
     @OneToMany(mappedBy = "producto")
     private List<CuentaEntity> cuentas;
 
-
-    
-    public ProductoEntity() {;
-    }
-
-    
+    public ProductoEntity() {;}
 
     public ProductoEntity(String nombre, Integer costo, ServicioEntity servicio, List<CuentaEntity> cuentas) {
         this.nombre = nombre;
@@ -39,8 +34,6 @@ public class ProductoEntity {
         this.servicio = servicio;
         this.cuentas = cuentas;
     }
-
-
 
     public Long getId() {
         return id;
@@ -81,9 +74,6 @@ public class ProductoEntity {
     public void setCuentas(List<CuentaEntity> cuentas) {
         this.cuentas = cuentas;
     }
-
-
-    
 }
 
 

@@ -1,4 +1,5 @@
 package uniandes.sistrans.HotelDeLosAndes.repositorios;
+
 import uniandes.sistrans.HotelDeLosAndes.modelo.ServicioEntity;
 
 import java.util.Collection;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServicioRepository extends JpaRepository<ServicioEntity, Long> {
-    // métodos de consulta personalizados si los necesitas
     @Query(value = "SELECT * FROM servicios", nativeQuery = true)
-        Collection<ServicioEntity> darServicios();
+    Collection<ServicioEntity> darServicios();
 }

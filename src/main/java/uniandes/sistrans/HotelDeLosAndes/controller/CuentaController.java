@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import jakarta.transaction.Transactional;
+
 import uniandes.sistrans.HotelDeLosAndes.modelo.CuentaEntity;
 import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
 import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
@@ -22,7 +22,7 @@ import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
 
 @Controller
 public class CuentaController {
-      @Autowired
+    @Autowired
     private CuentaRepository cuentaRepository;
 
     @Autowired

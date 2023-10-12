@@ -1,7 +1,9 @@
 package uniandes.sistrans.HotelDeLosAndes.modelo;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "gimnasio")
@@ -9,9 +11,6 @@ import jakarta.persistence.Table;
 public class GimnasioEntity  extends ServicioEntity{
     private Integer maquinas;
 
-
-
-    
     public GimnasioEntity(String nombre, String tipo, Integer maquinas) {
         super(nombre, tipo);
         this.maquinas = maquinas;
@@ -28,7 +27,4 @@ public class GimnasioEntity  extends ServicioEntity{
     public void setMaquinas(Integer maquinas) {
         this.maquinas = maquinas;
     }
-
-    
-    
 }
