@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.transaction.Transactional;
-import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
-import uniandes.sistrans.HotelDeLosAndes.modelo.ServicioEntity;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ServicioRepository;
+import uniandes.sistrans.HotelDeLosAndes.model.ProductoEntity;
+import uniandes.sistrans.HotelDeLosAndes.model.ServicioEntity;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ProductoRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ServicioRepository;
 
 
 @Controller
@@ -27,7 +27,7 @@ public class ProductoController {
     private ServicioRepository servicioRepository;
 
     @GetMapping("/productos")
-    public String productos(Model model, String ciudad, String tipo) {
+    public String productos(Model model) {
         model.addAttribute("productos", this.productoRepository.findAll());
         return "productos";
     }

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import uniandes.sistrans.HotelDeLosAndes.modelo.Habitacion;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.HabitacionRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.Tipos_HabitacionRepository;
+import uniandes.sistrans.HotelDeLosAndes.model.Habitacion;
+import uniandes.sistrans.HotelDeLosAndes.repositories.HabitacionRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.Tipos_HabitacionRepository;
 
 
 @Controller

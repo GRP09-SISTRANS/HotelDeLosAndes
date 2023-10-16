@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.sistrans.HotelDeLosAndes.modelo.Habitacion;
-import uniandes.sistrans.HotelDeLosAndes.modelo.Plan_Consumo;
-import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
-import uniandes.sistrans.HotelDeLosAndes.modelo.Usuario;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.HabitacionRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.Plan_ConsumoRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.Reserva_clienteRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.UsuarioRepository;
+import uniandes.sistrans.HotelDeLosAndes.model.Habitacion;
+import uniandes.sistrans.HotelDeLosAndes.model.Plan_Consumo;
+import uniandes.sistrans.HotelDeLosAndes.model.Reserva;
+import uniandes.sistrans.HotelDeLosAndes.model.Usuario;
+import uniandes.sistrans.HotelDeLosAndes.repositories.HabitacionRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.Plan_ConsumoRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ReservaRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.Reserva_clienteRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.UsuarioRepository;
 
 
 @Controller

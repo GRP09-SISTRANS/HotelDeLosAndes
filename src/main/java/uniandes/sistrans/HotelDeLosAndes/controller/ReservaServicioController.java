@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.transaction.Transactional;
-import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
-import uniandes.sistrans.HotelDeLosAndes.modelo.ReservaServicioEntity;
-import uniandes.sistrans.HotelDeLosAndes.modelo.Usuario;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaServicioRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.UsuarioRepository;
+import uniandes.sistrans.HotelDeLosAndes.model.ProductoEntity;
+import uniandes.sistrans.HotelDeLosAndes.model.ReservaServicioEntity;
+import uniandes.sistrans.HotelDeLosAndes.model.Usuario;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ProductoRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ReservaServicioRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.UsuarioRepository;
 
 
 @Controller

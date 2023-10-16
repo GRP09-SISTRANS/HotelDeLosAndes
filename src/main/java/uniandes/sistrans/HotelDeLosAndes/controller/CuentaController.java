@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.transaction.Transactional;
-
-import uniandes.sistrans.HotelDeLosAndes.modelo.CuentaEntity;
-import uniandes.sistrans.HotelDeLosAndes.modelo.ProductoEntity;
-import uniandes.sistrans.HotelDeLosAndes.modelo.Reserva;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.CuentaRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ProductoRepository;
-import uniandes.sistrans.HotelDeLosAndes.repositorios.ReservaRepository;
+import uniandes.sistrans.HotelDeLosAndes.model.CuentaEntity;
+import uniandes.sistrans.HotelDeLosAndes.model.ProductoEntity;
+import uniandes.sistrans.HotelDeLosAndes.model.Reserva;
+import uniandes.sistrans.HotelDeLosAndes.repositories.CuentaRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ProductoRepository;
+import uniandes.sistrans.HotelDeLosAndes.repositories.ReservaRepository;
 
 
 @Controller
@@ -32,7 +31,7 @@ public class CuentaController {
     private ProductoRepository productoRepository;
 
     @GetMapping("/cuentas")
-    public String cuentas(Model model, String ciudad, String tipo) {
+    public String cuentas(Model model) {
         model.addAttribute("cuentas", this.cuentaRepository.findAll());
         return "cuentas";
     }
