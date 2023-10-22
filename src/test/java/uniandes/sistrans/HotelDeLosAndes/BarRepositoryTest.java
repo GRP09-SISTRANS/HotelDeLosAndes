@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import uniandes.sistrans.HotelDeLosAndes.model.BarEntity;
+import uniandes.sistrans.HotelDeLosAndes.models.BarEntity;
 import uniandes.sistrans.HotelDeLosAndes.repositories.BarRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.CuentaRepository;
 

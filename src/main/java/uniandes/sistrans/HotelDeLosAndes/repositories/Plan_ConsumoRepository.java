@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.sistrans.HotelDeLosAndes.model.Plan_Consumo;
+import uniandes.sistrans.HotelDeLosAndes.models.Plan_Consumo;
 
 
 public interface Plan_ConsumoRepository extends JpaRepository<Plan_Consumo, Integer> {

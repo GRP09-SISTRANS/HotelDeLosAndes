@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.sistrans.HotelDeLosAndes.model.Usuario;
+import uniandes.sistrans.HotelDeLosAndes.models.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     @Query(value = "SELECT * FROM Usuario WHERE id = :id", nativeQuery = true)

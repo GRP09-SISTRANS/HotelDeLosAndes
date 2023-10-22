@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.sistrans.HotelDeLosAndes.model.Reserva;
+import uniandes.sistrans.HotelDeLosAndes.models.Reserva;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Query(value = "SELECT * FROM Reserva WHERE id = :id", nativeQuery = true)

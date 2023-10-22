@@ -9,3 +9,10 @@ target/
 
 ### CREDNS  ### 
 /src/main/resources/application.properties
+
+### DOCS    ### 
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz

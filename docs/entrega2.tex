@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{fancyhdr} % agregar un header bonito
+\usepackage{lastpage} % agregar numeración al footer
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+
+% config page style
+\usepackage[a4paper]{geometry}
+\geometry{top=2.54cm, bottom=2.54 cm, left=2.54 cm, right=2.54 cm}
+% end of config
+
+% config to beauty headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Proyecto - Entrega 2}
+\lhead{Universidad de los Andes}
+\rfoot{Página \thepage\ de \pageref{LastPage}}
+% end of config
+
+% Document information
+\title{\textbf{\color{RoyalPurple}Entrega número 2\color{black}}}
+\author{Javier Barrera - 202214779 \\ nombre 2 - codigo \\ nombre 3 - codigo}
+\date{23 de octubre de 2023}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{\color{RoyalBlue}Solución\color{black}}
+
+\lipsum[1-1]
+
+\subsection*{\color{RoyalBlue}Ejemplo documento\color{black}}
+
+\lipsum[1-1]
+
+\end{document}

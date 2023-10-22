@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.sistrans.HotelDeLosAndes.model.Tipos_Habitacion;
+import uniandes.sistrans.HotelDeLosAndes.models.Tipos_Habitacion;
 
 
 public interface Tipos_HabitacionRepository extends JpaRepository<Tipos_Habitacion, Integer>{
