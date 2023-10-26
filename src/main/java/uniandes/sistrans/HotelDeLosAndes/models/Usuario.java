@@ -1,27 +1,17 @@
 package uniandes.sistrans.HotelDeLosAndes.models;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name="usuario")
-public class Usuario implements UserDetails {
+public class Usuario {
     @Id
     private Integer id;
 
@@ -33,14 +23,6 @@ public class Usuario implements UserDetails {
     private String nombre;
     private String apellido;
     private String contrasenia;
-
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-        name = "user_role_junction",
-        joinColumns = {@JoinColumn(name="user_id")},
-        inverseJoinColumns = {@JoinColumn(name="role_id")}
-    )
-    private Set<Role> authorities;
 
     private char tipo_usuario;
 
@@ -55,7 +37,6 @@ public class Usuario implements UserDetails {
         String Nombre,
         String Apellido,
         String Contrasenia,
-        Set<Role> authorities,
         char Tipo_usuario
     ) {
         this.id = Id;
@@ -65,14 +46,10 @@ public class Usuario implements UserDetails {
         this.nombre = Nombre;
         this.apellido = Apellido;
         this.contrasenia = Contrasenia;
-        this.authorities = authorities;
         this.tipo_usuario = Tipo_usuario;
     }
 
-    public Usuario() {
-        super();
-        this.authorities = new HashSet<Role>();
-    }
+    public Usuario() {;}
 
     public Integer getId() {
         return this.id;
@@ -106,8 +83,7 @@ public class Usuario implements UserDetails {
         this.direccion = direccion;
     }
 
-    @Override
-    public String getUsername() {
+    public String getNombre() {
         return this.nombre;
     }
 
@@ -123,8 +99,7 @@ public class Usuario implements UserDetails {
         this.apellido = apellido;
     }
 
-    @Override
-    public String getPassword() {
+    public String getContrasenia() {
         return this.contrasenia;
     }
 
@@ -138,34 +113,5 @@ public class Usuario implements UserDetails {
 
     public void setTipo_usuario(char tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
-    }
-
-    public void setAuthorities(HashSet<Role> authorities) {
-        this.authorities = authorities;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }
