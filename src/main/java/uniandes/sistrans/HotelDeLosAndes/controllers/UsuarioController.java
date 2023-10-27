@@ -25,7 +25,7 @@ public class UsuarioController {
     @GetMapping(value="/usuarios/new")
     public String crearUsuario(Model model) {
         model.addAttribute("usuario", usuarioRepository.darUsuarios());
-        return "usuarioNueva";
+        return "usuarioNuevo";
     }
 
     @GetMapping(value="/usuarios/new/save")

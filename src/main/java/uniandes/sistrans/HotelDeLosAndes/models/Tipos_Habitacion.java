@@ -29,7 +29,7 @@ public class Tipos_Habitacion {
     public Tipos_Habitacion() {;}
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -74,9 +74,5 @@ public class Tipos_Habitacion {
 
     public void setTelevision(boolean television) {
         this.television = television;
-    }
-
-    public String toString(){
-        return "Tipos_Habitacion [id=" + id + ", nombre=" + nombre + ", costo=" + costo + ", minibar=" + minibar + ", cafetera=" + cafetera + ", television=" + television + "]";
     }
 }

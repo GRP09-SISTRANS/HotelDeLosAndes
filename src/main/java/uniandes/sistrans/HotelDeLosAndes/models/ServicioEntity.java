@@ -18,6 +18,7 @@ public class ServicioEntity {
     private Long id;
     private String nombre;
     private String tipo;
+
     @OneToMany(mappedBy = "servicio")
     private List<ProductoEntity> productos;
     

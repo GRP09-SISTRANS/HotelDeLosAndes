@@ -26,20 +26,26 @@
             <th scope="col">Descripción</th>
           </tr>
         </thead>
-        <th:block th:each="hbt : ${plan_consumo}">
+        <th:block th:each="plan_consumo : ${planes_consumo}">
           <tr class="table-info">
-            <td th:text="${hbt.id}"></td>
-            <td th:text="${hbt.nombre}"></td>
-            <td th:text="${hbt.descripcion}"></td>
-            <!-- <td>
-              <a th:href="@{planes_consumo/{id}/edit(id=${hbt.id})}">Editar</a>
+            <td th:text="${plan_consumo.id}"></td>
+            <td th:text="${plan_consumo.nombre}"></td>
+            <td th:text="${plan_consumo.descripcion}"></td>
+            <td class="table-active text-center">
               <a
-                th:href="@{planes_consumo/{id}/delete(id=${hbt.id})}"
+                class="btn btn-primary"
+                th:href="@{plan_consumo/{id}/edit(id=${plan_consumo.id})}"
+              >
+                Editar
+              </a>
+              <a
+                class="btn btn-danger"
+                th:href="@{plan_consumo/{id}/delete(id=${plan_consumo.id})}"
                 onclick="return confirm('¿Estás seguro de borrar este bar?')"
               >
                 Borrar
               </a>
-            </td> -->
+            </td>
           </tr>
         </th:block>
       </table>

@@ -31,16 +31,23 @@
           <tr class="table-info">
             <td th:text="${habitacion.id}"></td>
             <td th:text="${habitacion.capacidad}"></td>
+            <!-- <td th:text="${habitacion.tipos_habitacion_id}"></td> -->
             <td>-</td>
-            <!-- <td>
-              <a th:href="@{habitaciones/{id}/edit(id=${habitacion.id})}">Editar</a>
+            <td class="table-active text-center">
               <a
+                class="btn btn-primary"
+                th:href="@{habitaciones/{id}/edit(id=${habitacion.id})}"
+              >
+                Editar
+              </a>
+              <a
+                class="btn btn-danger"
                 th:href="@{habitaciones/{id}/delete(id=${habitacion.id})}"
                 onclick="return confirm('¿Estás seguro de borrar este bar?')"
               >
                 Borrar
               </a>
-            </td> -->
+            </td>
           </tr>
         </th:block>
       </table>

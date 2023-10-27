@@ -13,7 +13,7 @@ import uniandes.sistrans.HotelDeLosAndes.models.Tipos_Habitacion;
 
 
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>{
-    @Query(value = "SELECT * FROM Habitacion", nativeQuery = true)
+    @Query(value = "SELECT * FROM habitacion", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
     @Query(value = "SELECT * FROM Habitacion WHERE id = :id", nativeQuery = true)

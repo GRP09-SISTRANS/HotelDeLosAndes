@@ -32,20 +32,26 @@
 
         <th:block th:each="producto : ${productos}">
           <tr class="table-info">
-            <!-- <td th:text="$producto.id}"></td> -->
-            <!-- <td th:text="$producto.servicio.nombre}"></td> -->
-            <!-- <td th:text="$producto.servicio.id}"></td> -->
-            <!-- <td th:text="$producto.nombre}"></td> -->
-            <!-- <td th:text="$producto.costo}"></td> -->
-            <!-- <td>
-              <a th:href="@productos/{id}/edit(id=$producto.id})}">Editar</a>
+            <td th:text="${producto.id}"></td>
+            <td th:text="${producto.servicio.nombre}"></td>
+            <td th:text="${producto.servicio.id}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.costo}"></td>
+            <td class="table-active text-center">
               <a
-                th:href="@productos/{id}/delete(id=$producto.id})}"
+                class="btn btn-primary"
+                th:href="@{productos/{id}/edit(id=${producto.id})}"
+              >
+                Editar
+              </a>
+              <a
+                class="btn btn-danger"
+                th:href="@{productos/{id}/delete(id=${producto.id})}"
                 onclick="return confirm('¿Estás seguro de borrar este bar?')"
               >
                 Borrar
               </a>
-            </td> -->
+            </td>
           </tr>
         </th:block>
       </table>

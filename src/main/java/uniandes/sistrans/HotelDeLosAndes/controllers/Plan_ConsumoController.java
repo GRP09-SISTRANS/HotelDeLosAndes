@@ -18,7 +18,7 @@ public class Plan_ConsumoController {
 
     @GetMapping(value="/planes_consumo")
     public String plan_consumo(Model model) {
-        model.addAttribute("plan_consumo", plan_consumoRepository.darPlan_Consumo());
+        model.addAttribute("planes_consumo", plan_consumoRepository.darPlan_Consumo());
         return "planes_consumo";
     }
 

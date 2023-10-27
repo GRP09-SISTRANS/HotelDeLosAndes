@@ -34,7 +34,7 @@ public class ProductoController {
 
     @GetMapping("/productos/new")
     public String productoForm(Model model) {
-        model.addAttribute("bar", new ProductoEntity());
+        model.addAttribute("producto", new ProductoEntity());
         return "productoNuevo";
     }
 

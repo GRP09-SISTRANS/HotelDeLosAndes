@@ -26,22 +26,30 @@
             <th scope="col">Id</th>
             <th scope="col">Fecha</th>
             <th scope="col">Usuario</th>
+            <th scope="col">Producto ID</th>
           </tr>
         </thead>
-        <th:block th:each="usuario : ${usuarios}">
+        <th:block th:each="reserva : ${reservasServicios}">
           <tr class="table-info">
-            <td th:text="${usuario.id}"></td>
-            <td th:text="${usuario.fecha}"></td>
-            <td th:text="${usuario.usuario.nombre}"></td>
-            <!-- <td>
-              <a th:href="@{reservasServicios/{id}/edit(id=${usuario.id})}">Editar</a>
+            <td th:text="${reserva.id}"></td>
+            <td th:text="${reserva.fecha}"></td>
+            <td th:text="${reserva.usuario.nombre}"></td>
+            <td th:text="${reserva.producto.id}"></td>
+            <td class="table-active text-center">
               <a
-                th:href="@{reservasServicios/{id}/delete(id=${usuario.id})}"
+                class="btn btn-primary"
+                th:href="@{reservasServicios/{id}/edit(id=${reserva.id})}"
+              >
+                Editar
+              </a>
+              <a
+                class="btn btn-danger"
+                th:href="@{reservasServicios/{id}/delete(id=${reserva.id})}"
                 onclick="return confirm('¿Estás seguro de borrar este bar?')"
               >
                 Borrar
-             </a>
-            </td> -->
+              </a>
+            </td>
           </tr>
         </th:block>
       </table>

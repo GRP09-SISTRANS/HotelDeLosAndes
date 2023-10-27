@@ -27,7 +27,7 @@ public class Usuario {
     private char tipo_usuario;
 
     @OneToMany(mappedBy = "usuario")
-    private List<ReservaServicioEntity> reservas;
+    private List<ReservaServicio> reservas;
 
     public Usuario(
         Integer Id, 

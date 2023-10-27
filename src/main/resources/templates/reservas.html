@@ -37,15 +37,21 @@
             <td th:text="${reserva.check_out}"></td>
             <td th:text="${reserva.fecha_inicio_reserva}"></td>
             <td th:text="${reserva.fecha_final_reserva}"></td>
-            <!-- <td>
-              <a th:href="@{reservas/{id}/edit(id=${reserva.id})}">Editar</a>
+            <td class="table-active text-center">
               <a
+                class="btn btn-primary"
+                th:href="@{reservas/{id}/edit(id=${reserva.id})}"
+              >
+                Editar
+              </a>
+              <a
+                class="btn btn-danger"
                 th:href="@{reservas/{id}/delete(id=${reserva.id})}"
                 onclick="return confirm('¿Estás seguro de borrar este bar?')"
               >
                 Borrar
-             </a>
-            </td> -->
+              </a>
+            </td>
           </tr>
         </th:block>
       </table>

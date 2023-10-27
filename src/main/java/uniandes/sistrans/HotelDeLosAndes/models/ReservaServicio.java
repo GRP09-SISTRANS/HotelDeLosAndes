@@ -11,11 +11,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "reserva_servicio")
-public class ReservaServicioEntity {
+public class ReservaServicio {
     @Id
-    private Long id;
-
-    private Date fecha;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
@@ -24,11 +22,33 @@ public class ReservaServicioEntity {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    private Date fecha;
+
+    public ReservaServicio (
+        Integer Id,
+        ProductoEntity Producto,
+        Usuario Usuario,
+        Date Fecha
+    ) {
+        this.id = Id;
+        this.producto = Producto;
+        this.usuario = Usuario;
+        this.fecha = Fecha;
+    }
     
-    public ReservaServicioEntity() {;}
+    public ReservaServicio() {;}
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getFecha() {
-        return fecha;
+        return this.fecha;
     }
 
     public void setFecha(Date fecha) {
@@ -36,7 +56,7 @@ public class ReservaServicioEntity {
     }
 
     public ProductoEntity getProducto() {
-        return producto;
+        return this.producto;
     }
 
     public void setProducto(ProductoEntity producto) {
@@ -44,7 +64,7 @@ public class ReservaServicioEntity {
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
     public void setUsuario(Usuario usuario) {

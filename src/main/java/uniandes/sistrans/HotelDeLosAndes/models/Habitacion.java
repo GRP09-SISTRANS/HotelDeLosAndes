@@ -15,7 +15,7 @@ public class Habitacion {
     private Integer capacidad;
 
     @ManyToOne
-    @JoinColumn(name="tipos_habitacion_id", referencedColumnName="id")
+    @JoinColumn(name="tipos_habitacion_id")
     private Tipos_Habitacion tipos_habitacion_id;
 
     public Habitacion(Integer Id, Integer Capacidad, Tipos_Habitacion tipoHabitacion) {
