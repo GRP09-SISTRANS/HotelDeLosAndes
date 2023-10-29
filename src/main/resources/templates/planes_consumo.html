@@ -31,7 +31,7 @@
             <td th:text="${plan_consumo.id}"></td>
             <td th:text="${plan_consumo.nombre}"></td>
             <td th:text="${plan_consumo.descripcion}"></td>
-            <td class="table-active text-center">
+            <td class="table-active text-center" style="min-width: 160px;">
               <a
                 class="btn btn-primary"
                 th:href="@{plan_consumo/{id}/edit(id=${plan_consumo.id})}"

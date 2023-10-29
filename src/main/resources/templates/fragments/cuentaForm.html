@@ -6,17 +6,17 @@
   <title>Cuenta Form</title>
 </head>
 <body>
-  <div th:fragment="cuentaForm(titulo)" class="container border border-2 w-25">
+  <div th:fragment="cuentaForm(titulo)" style="min-width: 350px;" class="container border border-2 py-3">
     <h1 class="text-center" th:text="${titulo}"></h1>
     <form>
       <label class="col-form-label">Nombre</label>
       <input class="form-control" type="text" id="nombre" name="nombre" required />
-      <label class="col-form-label"></label>
+      <label class="col-form-label">Algo más</label>
       <input class="form-control" type="text" id="ciudad" name="ciudad" requiered  />
 
-      <div class="text-center">
-    	<input type="submit" value="guardar" class="btn btn-primary"/>
-	    <a th:href="@{/cuentas}" class="btn btn-primary">Cancelar</a>
+      <div class="text-center mt-2">
+    	  <input type="submit" value="Guardar" class="btn btn-primary"/>
+	      <a th:href="@{/cuentas}" class="btn btn-danger">Cancelar</a>
       </div>
     </form>
   </div>
