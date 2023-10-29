@@ -15,4 +15,9 @@ public class HotelDeLosAndesController {
     public String documentation() {
         return "docs";
     }
+
+    @RequestMapping("/roles")
+    public String login() {
+        return "roles";
+    }
 }
