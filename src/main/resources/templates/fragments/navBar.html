@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nav Bar</title>
+</head>
+<body>
+  <nav th:fragment="navBar(notMain, ruta)" class="navbar bg-warning border-bottom border-body">
+    <div class="container-fluid d-flex justify-content-center">
+      <a style="margin-right: 400px;" class="navbar-brand text-white" href="/">
+        <h1>Hotel de los Andes</h1>
+      </a>
+      <div class="fs-4 fw-5">
+        <a th:if="${notMain != null}" style="color: #fff; text-decoration: none;" th:href="${ruta}" th:text="${notMain}"></a>
+        <a th:if="${notMain == null}" style="color: #fff; text-decoration: none;" href="/roles">Acceder</a>
+      </div>
+    </div>
+  </nav>
+</body>
+</html>

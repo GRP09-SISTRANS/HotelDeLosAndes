@@ -9,16 +9,7 @@
   </head>
 
   <body>
-    <nav class="navbar bg-warning border-bottom border-body">
-      <div class="container-fluid d-flex justify-content-center">
-        <a style="margin-right: 400px;" class="navbar-brand text-white" href="/">
-          <h1>Hotel de los Andes</h1>
-        </a>
-        <div class="fs-4 fw-5">
-          <a style="color: #fff; text-decoration: none;" href="/roles">Acceder</a>
-        </div>
-      </div>
-    </nav>
+    <div th:replace="~{fragments/navBar :: navBar(Acceder, '/roles')}"></div>
 
     <main style="margin: 40px 100px;">
 
@@ -44,10 +35,10 @@
 
     </main>
 
-    <footer class="bg-warning">
+    <footer style="position: relative; bottom: 0; width: 100%;" class="bg-warning">
       <div class="text-center text-white p-3 fs-5">
         Desarrollado con 💛
-      </div>      
+      </div>
     </footer>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
