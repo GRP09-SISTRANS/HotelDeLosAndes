@@ -33,8 +33,7 @@ class DataGenerator:
         self.cur = connection.cursor()
 
     def crearTienda(self, cantidad_registros: int):
-        for _ in range(cantidad_registros):
-            # tuple with the data to insert
+        for i in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre': self.faker.word() + ' Tienda',
@@ -62,7 +61,11 @@ class DataGenerator:
         for i in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
+<<<<<<< HEAD
                     'nombre': self.faker.word(),
+=======
+                    'nombre': self.faker.name(),
+>>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
                     'tipo': 'Salon'
                 }
             servicio_salon = {'servicio_id': self.secuencia_servicios, 'capacidad': self.faker.random_int(min=1, max=100)}
@@ -72,6 +75,98 @@ class DataGenerator:
 
             self.secuencia_servicios += 1
             self.conn.commit()
+
+    def crearLavanderia(self, cantidad_registros:int):
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre': self.faker.name(),
+                'tipo': 'Lavanderia'
+            }
+            
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO lavanderia (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+
+            self.secuencia_servicios += 1
+            self.conn.commit()
+
+    def crearPrestamoUtensilios(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : self.faker.name(),
+                'tipo': 'Prestamo'
+            }
+
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO prestamo_utensilios (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
+            self.secuencia_servicios += 1
+            self.conn.commit() 
+             
+    def crearSpa(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            nombre = self.faker.word() +" Spa"
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : nombre.capitalize(),
+                'tipo': 'Spa'
+            }
+
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO Spa (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
+            self.secuencia_servicios += 1
+            self.conn.commit()
+    
+    def crearSupermercado(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : self.faker.name(),
+                'tipo': 'SuperMercado'
+            }
+            
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+        
+
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO Supermercado (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
+            self.secuencia_servicios += 1
+            self.conn.commit()
+
+    def crearHabitacion(self, cantidad_pisos: int):
+        for i in range(cantidad_pisos+1):
+            for j in range(1,10):
+                tipo = 3
+                capacidad = (j%3)+1
+                id = i*100+j
+                if j%9 == 0:
+                    tipo = 1
+                    capacidad = 4
+                elif j%8 == 0 or j%7 == 0:
+                    capacidad = 4
+                    tipo = 2
+                
+                habitaciones_general = {
+                    'id': id,
+                    'capacidad': capacidad,
+                    'tipo_habitacion_id': tipo
+                }
+
+                self.cur.execute("INSERT INTO Habitacion (id, capacidad, tipos_habitacion_id) VALUES (:id, :capacidad, :tipo_habitacion_id)", habitaciones_general)
+                self.conn.commit()
+
+
+                
+                
     
     def limpiarBase(self):
         self.cur.execute("DELETE FROM bar")
@@ -88,8 +183,12 @@ class DataGenerator:
         self.cur.execute("DELETE FROM cuenta")
         self.cur.execute("DELETE FROM producto")
         self.cur.execute("DELETE FROM servicio")
+<<<<<<< HEAD
         
         self.cur.execute("DELETE FROM usuario")
+=======
+        self.cur.execute("DELETE FROM habitacion")
+>>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
 
         self.conn.commit()
     
@@ -227,6 +326,7 @@ if __name__ == '__main__':
         user = 'ISIS2304D06202320',
         password= 'CfHmMdpRQPKQ'
     )
+<<<<<<< HEAD
     data_generator.limpiarBase()
     #data_generator.crearSalonConferencia(10)
     #data_generator.crearBar(10)
@@ -237,3 +337,8 @@ if __name__ == '__main__':
     data_generator.crearUsuario(10, 1)
     data_generator.crearReservaServicio(10)
 
+=======
+    DataGenerator.limpiarBase(data_generator)
+    DataGenerator.crearSpa(data_generator, 10)
+    DataGenerator.crearHabitacion(data_generator, 10)
+>>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
