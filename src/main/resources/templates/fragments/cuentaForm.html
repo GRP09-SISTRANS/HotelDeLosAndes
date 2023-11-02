@@ -9,10 +9,29 @@
   <div th:fragment="cuentaForm(titulo)" style="min-width: 350px;" class="container border border-2 py-3">
     <h1 class="text-center" th:text="${titulo}"></h1>
     <form>
-      <label class="col-form-label">Nombre</label>
-      <input class="form-control" type="text" id="nombre" name="nombre" required />
-      <label class="col-form-label">Algo más</label>
-      <input class="form-control" type="text" id="ciudad" name="ciudad" requiered  />
+      <label class="col-form-label">Producto ID</label>
+      
+      <select class="form-control" id="producto" name="producto" th:value="${cuenta.producto.id}">
+        <option
+          th:each="producto : ${productos}"
+          th:value="${producto.id}"
+          th:text="${producto.id + ' - ' + producto.nombre}"
+          th:selected="${producto.id eq producto.id}"
+        ></option>
+      </select>
+      
+      <label class="col-form-label">Cantidad</label>
+      <input class="form-control" type="text" id="cantidad" name="cantidad" requiered th:value="${cuenta.cantidad}"/>
+      
+      <label class="col-form-label">Reserva ID</label>
+      <select class="form-control" id="reserva" name="reserva" th:value="${cuenta.reserva.id}">
+        <option
+          th:each="reserva : ${reservas}"
+          th:value="${reserva.id}"
+          th:text="${reserva.id}"
+          th:selected="${reserva.id eq reserva.id}"
+        ></option>
+      </select>
 
       <div class="text-center mt-2">
     	  <input type="submit" value="Guardar" class="btn btn-primary"/>

@@ -10,7 +10,7 @@ import uniandes.sistrans.HotelDeLosAndes.models.ReservaServicio;
 
 
 @Repository
-public interface ReservaServicioRepository extends JpaRepository<ReservaServicio, Long> {
+public interface ReservaServicioRepository extends JpaRepository<ReservaServicio, Integer> {
     @Query(value = "SELECT * FROM reserva_servicio", nativeQuery = true)
     Collection<ReservaServicio> darReservasServicios();
 }

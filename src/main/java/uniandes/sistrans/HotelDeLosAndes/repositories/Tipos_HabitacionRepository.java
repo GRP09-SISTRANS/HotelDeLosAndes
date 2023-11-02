@@ -26,8 +26,14 @@ public interface Tipos_HabitacionRepository extends JpaRepository<Tipos_Habitaci
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Tipos_Habitacion (id, nombre, costo, minibar, cafetera, television) VALUES (:id, :nombre, :costo, :minibar, :cafetera, :television)", nativeQuery = true)
-    void insertarTipos_Habitacion(@Param("id") Integer id,@Param("nombre") String nombre,@Param("costo") Integer costo,@Param("minibar") boolean minibar,@Param("cafetera") boolean cafetera,@Param("television") boolean television);
+    @Query(value = "INSERT INTO tipos_habitacion (id, nombre, costo, minibar, cafetera, television) VALUES (seq_tipos_habitacion.nextval, :nombre, :costo, :minibar, :cafetera, :television);", nativeQuery = true)
+    void insertarTipos_Habitacion(
+        @Param("nombre") String nombre,
+        @Param("costo") Integer costo,
+        @Param("minibar") Boolean minibar,
+        @Param("cafetera") Boolean cafetera,
+        @Param("television") Boolean television
+    );
 
     @Modifying
     @Transactional

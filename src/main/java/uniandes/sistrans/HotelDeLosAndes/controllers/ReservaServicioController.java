@@ -62,7 +62,7 @@ public class ReservaServicioController {
     }
 
     @GetMapping("/reservasServicios/{id}/edit")
-    public String editReservaServicioForm(@PathVariable Long id, Model model) {
+    public String editReservaServicioForm(@PathVariable Integer id, Model model) {
         Optional<ReservaServicio> reservaServicio = this.reservaServicioRepository.findById(id);
         if (reservaServicio.isPresent()) {
             model.addAttribute("reservaServicio", reservaServicio.get());
@@ -76,7 +76,7 @@ public class ReservaServicioController {
 
     @PostMapping("/reservasServicios/{id}/edit/save")
     @Transactional
-    public String saveEditedReservaServicio(@PathVariable Long idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
+    public String saveEditedReservaServicio(@PathVariable Integer idReservaServicio, @ModelAttribute("id_producto") Long idProducto, @ModelAttribute("id_usuario") Integer idUsuario, @ModelAttribute("fecha") Date fecha) {
         Optional<ProductoEntity> producto = this.productoRepository.findById(idProducto);
         Optional<Usuario> usuario = this.usuarioRepository.findById(idUsuario);
         Optional<ReservaServicio> reservaServicio = this.reservaServicioRepository.findById(idReservaServicio);
@@ -92,7 +92,7 @@ public class ReservaServicioController {
 
     @GetMapping(value="/reservasServicios/{id}/delete")
     @Transactional
-    public String eliminarHabitacion(@PathVariable Long id) {
+    public String eliminarHabitacion(@PathVariable Integer id) {
         reservaServicioRepository.deleteById(id);
         return "redirect:/reservasServicios";
     }

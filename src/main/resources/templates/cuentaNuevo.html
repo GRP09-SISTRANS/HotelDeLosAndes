@@ -9,8 +9,8 @@
 <body>
 
   <main class="vh-100 d-flex align-items-center justify-content-center">
-    <form action="#" th:action="@{/cuentas/new/save}" method="post">
-      <div th:replace="~{fragments/cuentaForm.html :: cuentaForm(titulo = 'Crear bar')}">
+    <form th:action="@{/cuentas/new/save}" method="POST">
+      <div th:replace="~{fragments/cuentaForm :: cuentaForm(titulo = 'Crear cuenta')}">
       </div>
     </form>
   </main>

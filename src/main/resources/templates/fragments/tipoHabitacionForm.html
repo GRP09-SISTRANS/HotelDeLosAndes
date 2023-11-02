@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipo habitación Form</title>
+</head>
+<body>
+  <div th:fragment="tipoHabitacionForm(titulo)" style="min-width: 350px;" class="container border border-2 py-3">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+    <form>
+      <label class="col-form-label">Nombre</label>
+      <input class="form-control" type="text" id="nombre" name="nombre" requiered />
+      
+      <label class="col-form-label">Costo</label>
+      <input class="form-control" type="text" id="costo" name="costo" requiered />
+
+      <label class="col-form-label">Minibar</label>
+      <select class="form-control" id="minibar" name="minibar">
+        <option>Tiene</option>
+        <option>No tiene</option>
+      </select>
+
+      <label class="col-form-label">Cafetera</label>
+      <select class="form-control" id="cafetera" name="cafetera">
+        <option>Tiene</option>
+        <option>No tiene</option>
+      </select>
+
+      <label class="col-form-label">Television</label>
+      <select class="form-control" id="television" name="television">
+        <option>Tiene</option>
+        <option>No tiene</option>
+      </select>
+
+      <div class="text-center mt-2">
+    	  <input type="submit" value="Guardar" class="btn btn-primary"/>
+	      <a th:href="@{/cuentas}" class="btn btn-danger">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
