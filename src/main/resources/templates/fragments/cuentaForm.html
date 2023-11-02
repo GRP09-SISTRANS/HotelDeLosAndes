@@ -11,7 +11,7 @@
     <form>
       <label class="col-form-label">Producto ID</label>
       
-      <select class="form-control" id="producto" name="producto" th:value="${cuenta.producto.id}">
+      <select class="form-control" id="producto" name="producto">
         <option
           th:each="producto : ${productos}"
           th:value="${producto.id}"
@@ -24,7 +24,7 @@
       <input class="form-control" type="text" id="cantidad" name="cantidad" requiered th:value="${cuenta.cantidad}"/>
       
       <label class="col-form-label">Reserva ID</label>
-      <select class="form-control" id="reserva" name="reserva" th:value="${cuenta.reserva.id}">
+      <select class="form-control" id="reserva" name="reserva">
         <option
           th:each="reserva : ${reservas}"
           th:value="${reserva.id}"
