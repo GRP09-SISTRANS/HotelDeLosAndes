@@ -81,7 +81,7 @@ class DataGenerator:
             servicio_tienda = {'servicio_id': self.secuencia_servicios}
             
             self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
-            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            self.cur.execute("INSERT INTO lavanderia (servicio_id) VALUES (:servicio_id)", servicio_tienda)
 
             self.secuencia_servicios += 1
             self.conn.commit()
@@ -97,7 +97,7 @@ class DataGenerator:
             servicio_tienda = {'servicio_id': self.secuencia_servicios}
             
             self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
-            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            self.cur.execute("INSERT INTO prestamo_utensilios (servicio_id) VALUES (:servicio_id)", servicio_tienda)
             
             self.secuencia_servicios += 1
             self.conn.commit() 
@@ -114,7 +114,7 @@ class DataGenerator:
             servicio_tienda = {'servicio_id': self.secuencia_servicios}
             
             self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
-            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            self.cur.execute("INSERT INTO Spa (servicio_id) VALUES (:servicio_id)", servicio_tienda)
             
             self.secuencia_servicios += 1
             self.conn.commit()
@@ -131,10 +131,36 @@ class DataGenerator:
         
 
             self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
-            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            self.cur.execute("INSERT INTO Supermercado (servicio_id) VALUES (:servicio_id)", servicio_tienda)
             
             self.secuencia_servicios += 1
             self.conn.commit()
+
+    def crearHabitacion(self, cantidad_pisos: int):
+        for i in range(cantidad_pisos+1):
+            for j in range(1,10):
+                tipo = 3
+                capacidad = (j%3)+1
+                id = i*100+j
+                if j%9 == 0:
+                    tipo = 1
+                    capacidad = 4
+                elif j%8 == 0 or j%7 == 0:
+                    capacidad = 4
+                    tipo = 2
+                
+                habitaciones_general = {
+                    'id': id,
+                    'capacidad': capacidad,
+                    'tipo_habitacion_id': tipo
+                }
+
+                self.cur.execute("INSERT INTO Habitacion (id, capacidad, tipos_habitacion_id) VALUES (:id, :capacidad, :tipo_habitacion_id)", habitaciones_general)
+                self.conn.commit()
+
+
+                
+                
     
     def limpiarBase(self):
         self.cur.execute("DELETE FROM bar")
@@ -149,6 +175,7 @@ class DataGenerator:
         self.cur.execute("DELETE FROM supermercado")
         self.cur.execute("DELETE FROM producto")
         self.cur.execute("DELETE FROM servicio")
+        self.cur.execute("DELETE FROM habitacion")
 
         self.conn.commit()
 
@@ -166,3 +193,4 @@ if __name__ == '__main__':
     )
     DataGenerator.limpiarBase(data_generator)
     DataGenerator.crearSpa(data_generator, 10)
+    DataGenerator.crearHabitacion(data_generator, 10)
