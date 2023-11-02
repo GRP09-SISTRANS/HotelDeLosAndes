@@ -1,0 +1,42 @@
+
+from faker import Faker
+import cx_Oracle
+class GeneradorData:
+    def __init__(self, cur, conn):
+        self.cur = cur
+        self.conn = conn
+        self.secuencia_usuarios = 1
+        self.secuencia_servicios = 1
+        self.secuencia_reservas = 1
+        self.secuencia_reservas_servicios = 1
+        self.secuencia_reservas_habitaciones = 1
+        self.secuencia_habitaciones = 1
+        self.secuencia_cuenta = 1
+        self.secuencia_producto = 1
+
+        self.secuencia_
+
+    def crearUsuarios(self, numero):
+        for i in range(numero):
+            nombre = Faker('es_ES').name()
+            self.cur
+
+dsn_tns = cx_Oracle.makedsn('fn4.oracle.virtual.uniandes.edu.co', '1521', service_name='PROD')
+conn = cx_Oracle.connect(user='ISIS2304D06202320', password='CfHmMdpRQPKQ', dsn=dsn_tns)
+cur = conn.cursor()
+generadorDatos = GeneradorData(cur, conn)
+nombre = Faker('es_ES').name()
+
+
+
+# Ejecuta una consulta SQL simple
+cur.execute('select * FROM servicio')
+
+def crearUsuarios(cur,conn,numero):
+    
+
+# Imprime los resultados
+    for row in cur:
+        print(row)
+
+#print(nombre)
