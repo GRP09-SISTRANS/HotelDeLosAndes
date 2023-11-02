@@ -32,7 +32,7 @@ class DataGenerator:
 
     def crearTienda(self, cantidad_registros: int):
         for _ in range(cantidad_registros):
-            # tuple with the data to insert
+            for i in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre': self.faker.name(),
@@ -60,7 +60,7 @@ class DataGenerator:
         for i in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
-                    'nombre': Faker('es_ES').name(),
+                    'nombre': self.faker.name(),
                     'tipo': 'Salon'
                 }
             servicio_salon = {'servicio_id': self.secuencia_servicios, 'capacidad': self.faker.random_int(min=1, max=100)}
@@ -68,6 +68,71 @@ class DataGenerator:
             self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
             self.cur.execute("INSERT INTO salon_conferencia (servicio_id, capacidad) VALUES (:servicio_id, :capacidad)", servicio_salon)
 
+            self.secuencia_servicios += 1
+            self.conn.commit()
+
+    def crearLavanderia(self, cantidad_registros:int):
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre': self.faker.name(),
+                'tipo': 'Lavanderia'
+            }
+            
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+
+            self.secuencia_servicios += 1
+            self.conn.commit()
+
+    def crearPrestamoUtensilios(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : self.faker.name(),
+                'tipo': 'Prestamo utensilios'
+            }
+
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
+            self.secuencia_servicios += 1
+            self.conn.commit() 
+             
+    def crearSpa(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : self.faker.name(),
+                'tipo': 'Spa'
+            }
+
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+            
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
+            self.secuencia_servicios += 1
+            self.conn.commit()
+    
+    def crearSupermercado(self, cantidad_registros: int): 
+        for i in range(cantidad_registros):
+            servicio_general = {
+                'id': self.secuencia_servicios,
+                'nombre' : self.faker.name(),
+                'tipo': 'Supermercado'
+            }
+            
+            servicio_tienda = {'servicio_id': self.secuencia_servicios}
+        
+
+            self.cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            self.cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            
             self.secuencia_servicios += 1
             self.conn.commit()
     
