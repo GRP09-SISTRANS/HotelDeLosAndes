@@ -104,9 +104,10 @@ class DataGenerator:
              
     def crearSpa(self, cantidad_registros: int): 
         for i in range(cantidad_registros):
+            nombre = self.faker.word() +" Spa"
             servicio_general = {
                 'id': self.secuencia_servicios,
-                'nombre' : self.faker.name(),
+                'nombre' : nombre.capitalize(),
                 'tipo': 'Spa'
             }
 
@@ -164,4 +165,4 @@ if __name__ == '__main__':
         password= 'CfHmMdpRQPKQ'
     )
     DataGenerator.limpiarBase(data_generator)
-    DataGenerator.crearLavanderia(data_generator, 10)
+    DataGenerator.crearSpa(data_generator, 10)
