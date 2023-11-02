@@ -31,8 +31,7 @@ class DataGenerator:
         self.cur = connection.cursor()
 
     def crearTienda(self, cantidad_registros: int):
-        for _ in range(cantidad_registros):
-            for i in range(cantidad_registros):
+        for i in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre': self.faker.name(),
@@ -92,7 +91,7 @@ class DataGenerator:
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre' : self.faker.name(),
-                'tipo': 'Prestamo utensilios'
+                'tipo': 'Prestamo'
             }
 
             servicio_tienda = {'servicio_id': self.secuencia_servicios}
@@ -124,7 +123,7 @@ class DataGenerator:
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre' : self.faker.name(),
-                'tipo': 'Supermercado'
+                'tipo': 'SuperMercado'
             }
             
             servicio_tienda = {'servicio_id': self.secuencia_servicios}
@@ -165,4 +164,4 @@ if __name__ == '__main__':
         password= 'CfHmMdpRQPKQ'
     )
     DataGenerator.limpiarBase(data_generator)
-    DataGenerator.crearSalonConferencia(data_generator, 100)
+    DataGenerator.crearLavanderia(data_generator, 10)
