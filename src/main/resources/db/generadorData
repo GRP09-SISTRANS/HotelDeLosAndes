@@ -14,17 +14,41 @@ class GeneradorData:
         self.secuencia_cuenta = 1
         self.secuencia_producto = 1
 
-        self.secuencia_
+        
 
     def crearUsuarios(self, numero):
         for i in range(numero):
             nombre = Faker('es_ES').name()
             self.cur
+    
+    def crearTienda(self,cantidad_registros):
+        for i in range(cantidad_registros):
+            # Diccionario con la informacion que se va a insertar en la tabla servicio, debe coincidir con el nombre de las columnas
+            servicio_general = {'id': self.secuencia_servicios, 'nombre': Faker('es_ES').name(), 'tipo': 'Tienda' }
+            # Diccionario con la informacion que se va a insertar en la tabla tienda, debe coincidir con el nombre de las columnas
+            servicio_tienda = {'servicio_id':self.secuencia_servicios}
+            # Inserta los valores en la tabla servicio del diccionario servicio_general
+            cur.execute("INSERT INTO servicio (id, nombre, tipo) VALUES (:id, :nombre, :tipo)", servicio_general)
+            # Inserta los valores en la tabla tienda del diccionario servicio_tienda
+            cur.execute("INSERT INTO tienda (servicio_id) VALUES (:servicio_id)", servicio_tienda)
+            # Incrementa la secuencia de servicios a lo que ya se insertó un servicio
+            self.secuencia_servicios += 1
+            # Guarda los cambios en la base de datos
+            conn.commit()
+           
 
 dsn_tns = cx_Oracle.makedsn('fn4.oracle.virtual.uniandes.edu.co', '1521', service_name='PROD')
 conn = cx_Oracle.connect(user='ISIS2304D06202320', password='CfHmMdpRQPKQ', dsn=dsn_tns)
 cur = conn.cursor()
 generadorDatos = GeneradorData(cur, conn)
+generadorDatos.crearTienda(10)
+
+
+
+
+
+
+
 nombre = Faker('es_ES').name()
 
 
