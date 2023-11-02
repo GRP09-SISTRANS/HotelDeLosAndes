@@ -1,12 +1,13 @@
 
 from faker import Faker
 import cx_Oracle
+import oracledb
 class GeneradorData:
     def __init__(self, cur, conn):
         self.cur = cur
         self.conn = conn
         self.secuencia_usuarios = 1
-        self.secuencia_servicios = 1
+        self.secuencia_servicios = 10500
         self.secuencia_reservas = 1
         self.secuencia_reservas_servicios = 1
         self.secuencia_reservas_habitaciones = 1
@@ -37,8 +38,8 @@ class GeneradorData:
             conn.commit()
            
 
-dsn_tns = cx_Oracle.makedsn('fn4.oracle.virtual.uniandes.edu.co', '1521', service_name='PROD')
-conn = cx_Oracle.connect(user='ISIS2304D06202320', password='CfHmMdpRQPKQ', dsn=dsn_tns)
+dsn_tns = oracledb.makedsn('fn4.oracle.virtual.uniandes.edu.co', '1521', service_name='PROD')
+conn = oracledb.connect(user='ISIS2304D06202320', password='CfHmMdpRQPKQ', dsn=dsn_tns)
 cur = conn.cursor()
 generadorDatos = GeneradorData(cur, conn)
 generadorDatos.crearTienda(10)
