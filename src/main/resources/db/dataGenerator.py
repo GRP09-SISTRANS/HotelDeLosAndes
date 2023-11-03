@@ -61,11 +61,7 @@ class DataGenerator:
         for i in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
-<<<<<<< HEAD
                     'nombre': self.faker.word(),
-=======
-                    'nombre': self.faker.name(),
->>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
                     'tipo': 'Salon'
                 }
             servicio_salon = {'servicio_id': self.secuencia_servicios, 'capacidad': self.faker.random_int(min=1, max=100)}
@@ -183,12 +179,9 @@ class DataGenerator:
         self.cur.execute("DELETE FROM cuenta")
         self.cur.execute("DELETE FROM producto")
         self.cur.execute("DELETE FROM servicio")
-<<<<<<< HEAD
+        self.cur.execute("DELETE FROM habitacion")
         
         self.cur.execute("DELETE FROM usuario")
-=======
-        self.cur.execute("DELETE FROM habitacion")
->>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
 
         self.conn.commit()
     
@@ -300,14 +293,16 @@ class DataGenerator:
     def crearCuenta(self, cantidadRegistro:int):
         fecha = self.faker.date_between(start_date='-2y', end_date='today')
         for i in range(cantidadRegistro):
+            fecha = self.faker.date_between(start_date='-2y', end_date='today')
+            fecha_oracle = fecha.strftime('%Y-%m-%d').upper()
             cuenta = {
                 'id': self.secuencia_cuenta,
                 'reserva_id': self.faker.random_int(min=1, max=self.secuencia_usuarios-1),
                 'producto_id': self.faker.random_int(min=1, max= self.secuencia_producto-1),
                 'cantidad': self.faker.random_int(min=1, max=100),
-                'fecha': fecha.strftime('%d-%b-%Y').upper(), # 'DD-MON-YYYY        
+                'fecha': fecha_oracle, # 'DD-MON-YYYY        
             }
-            self.cur.execute("INSERT INTO cuenta (id, reserva_id, producto_id, cantidad, fecha) VALUES (:id, :reserva_id, :producto_id, :cantidad, :fecha)", cuenta)
+            self.cur.execute("INSERT INTO cuenta (id, reserva_id, producto_id, cantidad, fecha) VALUES (:id, :reserva_id, :producto_id, :cantidad, to_date(:fecha, 'yyyy/mm/dd'))", cuenta)
             self.secuencia_cuenta += 1
             self.conn.commit()
     
@@ -326,7 +321,6 @@ if __name__ == '__main__':
         user = 'ISIS2304D06202320',
         password= 'CfHmMdpRQPKQ'
     )
-<<<<<<< HEAD
     data_generator.limpiarBase()
     #data_generator.crearSalonConferencia(10)
     #data_generator.crearBar(10)
@@ -337,8 +331,3 @@ if __name__ == '__main__':
     data_generator.crearUsuario(10, 1)
     data_generator.crearReservaServicio(10)
 
-=======
-    DataGenerator.limpiarBase(data_generator)
-    DataGenerator.crearSpa(data_generator, 10)
-    DataGenerator.crearHabitacion(data_generator, 10)
->>>>>>> 2ff0479b4b336ed96bd18d37b6029e064fd4fb53
