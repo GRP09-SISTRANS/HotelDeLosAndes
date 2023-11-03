@@ -1,8 +1,9 @@
 
+from datetime import datetime
 from faker import Faker
 import oracledb
 import random
-
+from datetime import timedelta
 
 class DataGenerator:
     def __init__(self):
@@ -20,7 +21,9 @@ class DataGenerator:
         self.secuencia_habitaciones = 1
         self.secuencia_cuenta = 1
         self.secuencia_producto = 1
-        self.secuencia_plan_consumo = 1000
+        self.secuencia_plan_consumo = 1
+
+        self.reservas=[]
 
     def create_connection(self, host: str, port: str, user: str, password: str):
         dsn_tns = oracledb.makedsn(host, port, service_name='PROD')
@@ -144,6 +147,7 @@ class DataGenerator:
                 tipo = 3
                 capacidad = (j%3)+1
                 id = i*100+j
+                self.secuencia_habitaciones = i
                 if j%9 == 0:
                     tipo = 1
                     capacidad = 4
@@ -166,6 +170,7 @@ class DataGenerator:
     
     def limpiarBase(self):
         self.cur.execute("DELETE FROM bar")
+        self.cur.execute("DELETE FROM reserva_cliente")
         self.cur.execute("DELETE FROM piscina")
         self.cur.execute("DELETE FROM gimnasio")
         self.cur.execute("DELETE FROM salon_conferencia")
@@ -180,8 +185,11 @@ class DataGenerator:
         self.cur.execute("DELETE FROM producto")
         self.cur.execute("DELETE FROM servicio")
         self.cur.execute("DELETE FROM habitacion")
-        
         self.cur.execute("DELETE FROM usuario")
+        self.cur.execute("DELETE FROM reserva")
+        self.cur .execute("DELETE FROM reserva_cliente")
+        self.cur.execute("DELETE FROM plan_consumo")
+        
 
         self.conn.commit()
     
@@ -275,7 +283,7 @@ class DataGenerator:
     
     def crearReservaServicio(self, cantidadRegistro:int):
         for i in range(cantidadRegistro):
-           
+    
             # Generar una fecha aleatoria
             fecha = self.faker.date_between(start_date='-2y', end_date='today')
             # Formatear la fecha para su inserción en Oracle
@@ -297,7 +305,7 @@ class DataGenerator:
             fecha_oracle = fecha.strftime('%Y-%m-%d').upper()
             cuenta = {
                 'id': self.secuencia_cuenta,
-                'reserva_id': self.faker.random_int(min=1, max=self.secuencia_usuarios-1),
+                'reserva_id': self.faker.random_int(min=1, max=self.secuencia_reservas-1),
                 'producto_id': self.faker.random_int(min=1, max= self.secuencia_producto-1),
                 'cantidad': self.faker.random_int(min=1, max=100),
                 'fecha': fecha_oracle, # 'DD-MON-YYYY        
@@ -305,7 +313,54 @@ class DataGenerator:
             self.cur.execute("INSERT INTO cuenta (id, reserva_id, producto_id, cantidad, fecha) VALUES (:id, :reserva_id, :producto_id, :cantidad, to_date(:fecha, 'yyyy/mm/dd'))", cuenta)
             self.secuencia_cuenta += 1
             self.conn.commit()
+    def crearReserva(self, cantidadRegistro:int):
+        for i in range(cantidadRegistro):
+            #fecha de inicio entre hace 2 años y hoy
+            fecha_inicio_reserva = datetime.combine(self.faker.date_between(start_date='-2y', end_date='today'), datetime.min.time())
+            #fecha final entre la fecha de inicio y 15 dias despues
+            fecha_final_reserva = (fecha_inicio_reserva + timedelta(days=random.randint(1, 15)))
+            #fecha de check in entre la fecha de inicio y la fecha final
+            fecha_check_in = fecha_inicio_reserva + timedelta(days = random.randint(0, (fecha_final_reserva - fecha_inicio_reserva).days))
+            #fecha de check out entre la fecha de check in y la fecha final
+            fecha_checkout = fecha_check_in + timedelta(days = random.randint(0, (fecha_final_reserva-fecha_check_in).days))
+            reserva = {
+                'id': self.secuencia_reservas,
+                'check_in': fecha_check_in, # 'DD-MON-YYYY
+                'check_out': fecha_checkout, # 'DD-MON-YYYY
+                'fecha_inicio_reserva': fecha_inicio_reserva, # 'DD-MON-YYYY
+                'fecha_final_reserva': fecha_final_reserva, # 'DD-MON-YYYY        
+            }
+            self.cur.execute("INSERT INTO reserva (id, check_in, check_out, fecha_inicio_reserva, fecha_final_reserva) VALUES (:id, to_date(:check_in, 'yyyy/mm/dd'), to_date(:check_out, 'yyyy/mm/dd'), to_date(:fecha_inicio_reserva, 'yyyy/mm/dd'), to_date(:fecha_final_reserva, 'yyyy/mm/dd'))", reserva)
+            self.reservas.append(self.secuencia_reservas)
+            self.secuencia_reservas += 1
+            self.conn.commit()
     
+    def crearPlanConsumo(self, cantidadRegistro:int):
+        for i in range(cantidadRegistro):
+            plan_consumo = {
+                'id': self.secuencia_plan_consumo,
+                'nombre': self.faker.word() + ' Plan consumo',
+                'descripcion': self.faker.word(),
+            }
+            self.cur.execute("INSERT INTO plan_consumo (id, nombre, descripcion) VALUES (:id, :nombre, :descripcion)", plan_consumo)
+            self.secuencia_plan_consumo += 1
+            self.conn.commit()
+    def crearReservaCliente(self, cantidadRegistro:int):
+        for i in range(cantidadRegistro):
+            posible_piso = self.faker.random_int(min=0, max=self.secuencia_habitaciones)
+            posible_habitacion = self.faker.random_int(min=1, max=9)
+            habitacion_id = posible_piso*100 + posible_habitacion
+            print(habitacion_id, "habitacion")
+            print(self.secuencia_plan_consumo, "plan consumo")
+            reserva_cliente = {
+                'reserva_id': self.reservas.pop(),
+                'usuario_id': self.faker.random_int(min=1, max=self.secuencia_usuarios-1),
+                'habitacion_id': habitacion_id,
+                'plan_consumo_id': self.faker.random_int(min=1, max=self.secuencia_plan_consumo-1)
+            }
+            self.cur.execute("INSERT INTO reserva_cliente (reserva_id, usuario_id, habitacion_id, plan_consumo_id) VALUES (:reserva_id, :usuario_id, :habitacion_id, :plan_consumo_id)", reserva_cliente)
+            self.conn.commit()
+
 
     
     
@@ -328,6 +383,13 @@ if __name__ == '__main__':
     #data_generator.crearGimnasio(10)
     data_generator.crearInternet(10)
     data_generator.crearProducto(10)
-    data_generator.crearUsuario(10, 1)
-    data_generator.crearReservaServicio(10)
+    data_generator.crearPlanConsumo(10)
+    data_generator.crearUsuario(13, 1)
+    #data_generator.crearReservaServicio(10)
+    data_generator.crearReserva(10)
+    data_generator.crearHabitacion(3)
+
+    data_generator.crearCuenta(10)
+    data_generator.crearReservaCliente(10)
+    #data_generator.crearUsuario(10, 2)
 
