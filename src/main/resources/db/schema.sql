@@ -266,3 +266,6 @@ REFERENCES servicio ( id );
 ALTER TABLE tienda
 ADD CONSTRAINT tienda_servicio_fk FOREIGN KEY ( servicio_id )
 REFERENCES servicio ( id );
+
+
+
