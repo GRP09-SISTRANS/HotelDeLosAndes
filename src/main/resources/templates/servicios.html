@@ -27,11 +27,14 @@
 
 
   <form action="#" th:action="@{/servicios/usuariosServiciosConsumos}" method="get">
+    <label for="nombre">Servicios consumidos</label><br>
+    <input type="checkbox" name= "consumido"/>
     <label for="nombre">Tipo de agrupamiento:</label><br>
     <select class="form-control" id="tipoAgrupamiento" name="tipoAgrupamiento">
       <option value="Nada" >Nada</option>
       <option value="Fecha">Fecha</option>
       <option value="Fecha y Cliente" >Fecha Y Cliente</option>
+      <option value="Cliente" >Cliente</option>
       <option value="Frecuencia de Consumo">Frecuencia de Consumo</option>
     </select>
     <label for="nombre">Servicio</label><br>

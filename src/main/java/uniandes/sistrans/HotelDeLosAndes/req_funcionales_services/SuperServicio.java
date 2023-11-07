@@ -362,14 +362,31 @@ public class SuperServicio {
             sqlBuilder.append("u.ID, u.NOMBRE, u.APELLIDO, COUNT(c2.ID) AS numero_consumo ");
             query = " GROUP BY u.ID, u.NOMBRE, u.APELLIDO";
 
-        } else if ("Frecuencia de Consumo".equals(tipoAgrupamiento)) {
-            sqlBuilder.append("frecuencia_consumo, COUNT(*) AS numero_usuarios ");
-            query = " GROUP BY FrecuenciaConsumo";
-        }
+        } 
         sqlBuilder.append("FROM (SELECT * FROM CUENTA WHERE FECHA > ? AND FECHA < ?) c2 ");
         sqlBuilder.append("INNER JOIN (SELECT * FROM PRODUCTO WHERE SERVICIO_ID = ?) p2 ON c2.PRODUCTO_ID = p2.ID ");
         sqlBuilder.append("INNER JOIN RESERVA_CLIENTE rc ON rc.RESERVA_ID = c2.RESERVA_ID ");
         sqlBuilder.append("INNER JOIN USUARIO u ON rc.USUARIO_ID = u.ID ");
+        
+        if ("Frecuencia de Consumo".equals(tipoAgrupamiento)) {
+            String sql = "SELECT frecuencia_consumo, COUNT(*) AS numero_usuarios " +
+            "FROM ( " +
+            "    SELECT u.ID, COUNT(*) AS frecuencia_consumo " +
+            "    FROM ( " +
+            "        SELECT * FROM CUENTA " +
+            "        WHERE FECHA > TO_DATE('01-JAN-22', 'DD-MON-YY') AND FECHA < TO_DATE('31-DEC-23', 'DD-MON-YY') " +
+            "    ) c2 " +
+            "    INNER JOIN ( " +
+            "        SELECT * FROM PRODUCTO " +
+            "        WHERE SERVICIO_ID = 23 " +
+            "    ) p2 ON c2.PRODUCTO_ID = p2.ID " +
+            "    INNER JOIN RESERVA_CLIENTE rc ON rc.RESERVA_ID = c2.RESERVA_ID " +
+            "    INNER JOIN USUARIO u ON rc.USUARIO_ID = u.ID " +
+            "    GROUP BY u.ID )" +
+            sqlBuilder.delete(0, sqlBuilder.length());
+            sqlBuilder.append(sql);
+            query = " GROUP BY frecuencia_consumo";
+        }
         if (!"Nada".equals(tipoAgrupamiento)){
             sqlBuilder.append(query);
         }
@@ -415,5 +432,90 @@ public class SuperServicio {
             }
         }, params);
     } 
+
+
+
+    //Req funcional 10, está en servicio controller, usa una query dinamica
+    public List<SuperObjeto> darNoConsumosServiciosUsuario(LocalDate fechaInicio, LocalDate fechaFin, Integer servicioId, String tipoAgrupamiento) {
+    StringBuilder sqlBuilder = new StringBuilder();
+    sqlBuilder.append("SELECT ");
+
+    // Agregar la parte SELECT dependiendo del tipo de agrupamiento
+    if ("Nada".equals(tipoAgrupamiento)) {
+        sqlBuilder.append("c2.ID AS ID_CONSUMO, p2.SERVICIO_ID as ID_SERVICIO,u.ID, u.NOMBRE, u.APELLIDO");
+    } else if ("Fecha".equals(tipoAgrupamiento)) {
+        sqlBuilder.append("c2.FECHA, COUNT(c2.ID) AS NumeroConsumo");
+    } else if ("Frecuencia de Consumo".equals(tipoAgrupamiento)) {
+        sqlBuilder.append("FrecuenciaConsumo, COUNT(*) AS NumeroUsuarios");
+    } else if ("Cliente".equals(tipoAgrupamiento)) {
+        sqlBuilder.append("COUNT(c2.ID) AS TOTAL_CONSUMOs,u.ID, u.NOMBRE, u.APELLIDO");
+    } else if ("Fecha y Cliente".equals(tipoAgrupamiento)) {
+        sqlBuilder.append("c2.FECHA, COUNT(c2.ID) AS NumeroConsumo, p2.SERVICIO_ID as ID_SERVICIO, u.ID, u.NOMBRE, u.APELLIDO");
+    }
+
+    sqlBuilder.append(" FROM (SELECT * FROM CUENTA WHERE FECHA > ? AND FECHA < ?) c2");
+    sqlBuilder.append(" INNER JOIN (SELECT * FROM PRODUCTO WHERE SERVICIO_ID != ?) p2 ON c2.PRODUCTO_ID = p2.ID");
+    sqlBuilder.append(" INNER JOIN RESERVA_CLIENTE rc ON rc.RESERVA_ID = c2.RESERVA_ID");
+    sqlBuilder.append(" INNER JOIN USUARIO u ON rc.USUARIO_ID = u.ID");
+
+    if ("Fecha".equals(tipoAgrupamiento) || "Frecuencia de Consumo".equals(tipoAgrupamiento) || "Fecha y Cliente".equals(tipoAgrupamiento)
+    || "Cliente".equals(tipoAgrupamiento)) {
+        sqlBuilder.append(" GROUP BY ") ;
+        if ("Fecha".equals(tipoAgrupamiento)) {
+            sqlBuilder.append("c2.FECHA");
+        } else if ("Frecuencia de Consumo".equals(tipoAgrupamiento)) {
+            sqlBuilder.append("FrecuenciaConsumo");
+        } else if ("Fecha y Cliente".equals(tipoAgrupamiento)) {
+            sqlBuilder.append("c2.FECHA, p2.SERVICIO_ID, u.ID, u.NOMBRE, u.APELLIDO");
+        }
+        else if("Cliente".equals(tipoAgrupamiento)){
+            sqlBuilder.append("u.ID, u.NOMBRE, u.APELLIDO");
+        }
+    }
+
+    String sql = sqlBuilder.toString();
+
+    Object[] params = new Object[]{fechaInicio, fechaFin, servicioId};
+        return jdbcTemplate.query(sqlBuilder.toString(), new ResultSetExtractor<List<SuperObjeto>>() {
+            @Override
+            public List<SuperObjeto> extractData(ResultSet rs) throws SQLException {
+                List<SuperObjeto> list = new ArrayList<SuperObjeto>();
+    
+                while (rs.next()) {
+                    SuperObjeto superObjeto = new SuperObjeto();
+                    if ("Nada".equals(tipoAgrupamiento)) {
+                        superObjeto.setId_consumo((rs.getLong("id_consumo")));
+                        superObjeto.setId_servicio((rs.getLong("ID_SERVICIO")));
+                        superObjeto.setId_usuario((rs.getLong("ID")));
+                        superObjeto.setNombre_usuario(rs.getString("NOMBRE"));
+                        superObjeto.setApellido_usuario(rs.getString("APELLIDO"));
+                    } else if ("Fecha".equals(tipoAgrupamiento)) {
+                        superObjeto.setFecha(rs.getDate("FECHA"));
+
+                        superObjeto.setNum_consumos(rs.getInt("NumeroConsumo"));
+                    } else if ("Fecha y Cliente".equals(tipoAgrupamiento)) {
+                        superObjeto.setFecha(rs.getDate("FECHA"));
+                        superObjeto.setNum_consumos(rs.getInt("NumeroConsumo"));
+                        superObjeto.setId_servicio(rs.getLong("id_servicio"));
+                        superObjeto.setId_usuario((rs.getLong("ID")));
+                        superObjeto.setNombre_usuario(rs.getString("NOMBRE"));
+                        superObjeto.setApellido_usuario(rs.getString("APELLIDO"));
+                    } else if ("Cliente".equals(tipoAgrupamiento)) {
+                        superObjeto.setNum_consumos(rs.getInt("TOTAL_CONSUMOS"));
+                        superObjeto.setId_usuario((rs.getLong("ID")));
+                        superObjeto.setNombre_usuario(rs.getString("NOMBRE"));
+                        superObjeto.setApellido_usuario(rs.getString("APELLIDO"));
+                    } else if ("Frecuencia de Consumo".equals(tipoAgrupamiento)) {
+                        superObjeto.setFrecuencia_consumo(rs.getInt("frecuencia_consumo"));
+                        superObjeto.setNumero_usuarios(rs.getInt("numero_usuarios"));
+                    }
+    
+                    list.add(superObjeto);
+                }
+    
+                return list;
+            }
+        }, params);
+    }
     
 }

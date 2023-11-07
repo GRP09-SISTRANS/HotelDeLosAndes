@@ -104,9 +104,22 @@ public class ServicioController {
     @GetMapping("/servicios/usuariosServiciosConsumos")
     public String getusuariosConsumos(@ModelAttribute("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio
     , @ModelAttribute("fechaFin")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate fechaFin,  
-     @ModelAttribute("servicioId") Integer servicioId, @ModelAttribute("tipoAgrupamiento") String tipoAgrupamiento, Model model){
-        List<SuperObjeto>serviciosPopulares = this.superServicio.darConsumosServiciosUsuario(fechaInicio, fechaFin, servicioId, tipoAgrupamiento);
-        model.addAttribute("serviciosPopulares", serviciosPopulares);
+     @ModelAttribute("servicioId") Integer servicioId, @ModelAttribute("tipoAgrupamiento") String tipoAgrupamiento, 
+     @RequestParam(value = "consumido", defaultValue = "off") String consumido, Model model){
+        System.out.println(consumido);
+        boolean esConsumido = "on".equals(consumido);
+        if(esConsumido){
+             List<SuperObjeto>consumosUsuario = this.superServicio.darConsumosServiciosUsuario(fechaInicio, fechaFin, servicioId, tipoAgrupamiento);
+            model.addAttribute("consumosUsuario", consumosUsuario);
+        }
+        else{
+            List<SuperObjeto>usuariosServicios = this.superServicio.darNoConsumosServiciosUsuario(fechaInicio, fechaFin, servicioId, tipoAgrupamiento);
+            System.out.println("hola");
+            model.addAttribute("consumosUsuario", usuariosServicios);
+        }
+       
+        model.addAttribute("tipoAgrupamiento", tipoAgrupamiento);
+
         return "usuariosServiciosConsumos";
     }
 
