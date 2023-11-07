@@ -20,4 +20,29 @@ public class HotelDeLosAndesController {
     public String login() {
         return "roles";
     }
+
+    @RequestMapping("/roles/cliente")
+    public String cliente() {
+        return "cliente";
+    }
+
+    @RequestMapping("/roles/recepcionista")
+    public String recepcionista() {
+        return "recepcionista";
+    }
+
+    @RequestMapping("/roles/empleado")
+    public String empleado() {
+        return "empleado";
+    }
+
+    @RequestMapping("/roles/administrador")
+    public String administrador() {
+        return "administrador";
+    }
+
+    @RequestMapping("/roles/gerente")
+    public String gerente() {
+        return "gerente";
+    }
 }
