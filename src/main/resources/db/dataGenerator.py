@@ -325,15 +325,16 @@ class DataGenerator:
             fecha_checkout = fecha_check_in + timedelta(days = random.randint(0, (fecha_final_reserva-fecha_check_in).days))
             reserva = {
                 'id': self.secuencia_reservas,
-                'check_in': fecha_check_in, # 'DD-MON-YYYY
-                'check_out': fecha_checkout, # 'DD-MON-YYYY
-                'fecha_inicio_reserva': fecha_inicio_reserva, # 'DD-MON-YYYY
-                'fecha_final_reserva': fecha_final_reserva, # 'DD-MON-YYYY        
+                'check_in': fecha_check_in.strftime('%Y-%m-%d').upper(), # 'DD-MON-YYYY
+                'check_out': fecha_checkout.strftime('%Y-%m-%d').upper(), # 'DD-MON-YYYY
+                'fecha_inicio_reserva': fecha_inicio_reserva.strftime('%Y-%m-%d').upper(), # 'DD-MON-YYYY
+                'fecha_final_reserva': fecha_final_reserva.strftime('%Y-%m-%d').upper(), # 'DD-MON-YYYY        
             }
             self.cur.execute("INSERT INTO reserva (id, check_in, check_out, fecha_inicio_reserva, fecha_final_reserva) VALUES (:id, to_date(:check_in, 'yyyy/mm/dd'), to_date(:check_out, 'yyyy/mm/dd'), to_date(:fecha_inicio_reserva, 'yyyy/mm/dd'), to_date(:fecha_final_reserva, 'yyyy/mm/dd'))", reserva)
             self.reservas.append(self.secuencia_reservas)
             self.secuencia_reservas += 1
             self.conn.commit()
+
     
     def crearPlanConsumo(self, cantidadRegistro:int):
         for i in range(cantidadRegistro):
@@ -377,19 +378,19 @@ if __name__ == '__main__':
         password= 'CfHmMdpRQPKQ'
     )
     data_generator.limpiarBase()
-    #data_generator.crearSalonConferencia(10)
-    #data_generator.crearBar(10)
-    #data_generator.crearPiscina(10)
-    #data_generator.crearGimnasio(10)
+    data_generator.crearSalonConferencia(10)
+    data_generator.crearBar(10)
+    data_generator.crearPiscina(10)
+    data_generator.crearGimnasio(10)
     data_generator.crearInternet(10)
     data_generator.crearProducto(10)
     data_generator.crearPlanConsumo(10)
     data_generator.crearUsuario(13, 1)
-    #data_generator.crearReservaServicio(10)
-    data_generator.crearReserva(10)
-    data_generator.crearHabitacion(3)
+    data_generator.crearReservaServicio(20)
+    data_generator.crearReserva(100)
+    data_generator.crearHabitacion(2)
 
-    data_generator.crearCuenta(10)
-    data_generator.crearReservaCliente(10)
+    data_generator.crearCuenta(100)
+    data_generator.crearReservaCliente(100)
     #data_generator.crearUsuario(10, 2)
 

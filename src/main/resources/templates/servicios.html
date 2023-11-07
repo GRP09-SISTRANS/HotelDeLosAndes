@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicios - Hotel de los Andes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
   </head>
   <body>
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -15,12 +17,45 @@
         </a>
       </div>
     </nav>
+    <form action="#" th:action="@{/servicios/populares}" method="get">
+      <label for="fechaInicio">Fecha de inicio:</label><br>
+      <input type="date" id="fechaInicio" name="fechaInicio" required><br>
+      <label for="fechaFin">Fecha de fin:</label><br>
+      <input type="date" id="fechaFin" name="fechaFin" required><br>
+      <input type="submit" value="Enviar">
+  </form>
+
+
+  <form action="#" th:action="@{/servicios/usuariosServiciosConsumos}" method="get">
+    <label for="nombre">Tipo de agrupamiento:</label><br>
+    <select class="form-control" id="tipoAgrupamiento" name="tipoAgrupamiento">
+      <option value="Nada" >Nada</option>
+      <option value="Fecha">Fecha</option>
+      <option value="Fecha y Cliente" >Fecha Y Cliente</option>
+      <option value="Frecuencia de Consumo">Frecuencia de Consumo</option>
+    </select>
+    <label for="nombre">Servicio</label><br>
+    <select name = "servicioId" class = "form-control">
+      <option
+          th:each="servicio : ${servicios}"
+          th:value="${servicio.id}"
+          th:text="${servicio.id + ' - ' + servicio.nombre}"
+          th:selected="${servicio.id eq servicio.id}"
+        >
+      </option>
+    </select>
+    <label for="fechaInicio">Fecha de inicio:</label><br>
+    <input type="date" id="fechaInicio" name="fechaInicio" required><br>
+    <label for="fechaFin">Fecha de fin:</label><br>
+    <input type="date" id="fechaFin" name="fechaFin" required><br>
+    <input type="submit" value="Enviar">
+</form>
 
     <main class="container m-4">
       
       <h2>Servicios</h2>
 
-      <table class="table">
+      <table class="table" id="servicios">
         <thead>
           <tr class="table-dark">
             <th scope="col">ID</th>
@@ -52,7 +87,35 @@
         </th:block>
       </table>
     </main>
+    
+    <table class="table" id= "dinero_recolectado">
+      <thead>
+        <tr class="table-dark">
+          <th>Nombre</th>
+          <th>ID Habitaciódn</th>
+          <th>Dinero Recolectado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="resultado : ${servicioHabDinero}">
+          <tr class="table-info">
+            <td th:text="${resultado.nombre}"></td>
+            <td th:text="${resultado.id_habitacion}"></td>
+            <td th:text="${resultado.dinero_recolectado}"></td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+        $('#dinero_recolectado').DataTable();
+      });
+    
+      $(document).ready(function () {
+        $('#servicios').DataTable();
+      });
+    </script>
   </body>
 </html>

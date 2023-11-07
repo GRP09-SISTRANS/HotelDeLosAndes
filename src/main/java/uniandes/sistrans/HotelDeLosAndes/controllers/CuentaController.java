@@ -14,6 +14,7 @@ import uniandes.sistrans.HotelDeLosAndes.models.CuentaEntity;
 import uniandes.sistrans.HotelDeLosAndes.repositories.CuentaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.ReservaRepository;
+import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
 
 
 @Controller
@@ -27,9 +28,15 @@ public class CuentaController {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Autowired
+    private SuperServicio superServicio;
+
     @GetMapping("/cuentas")
     public String cuentas(Model model) {
         model.addAttribute("cuentas", this.cuentaRepository.findAll());
+        model.addAttribute("mayorOcupacion", this.superServicio.darFechaMayorOcupacion());
+        model.addAttribute("menorOcupacion", this.superServicio.darFechaMayorOcupacion());
+        model.addAttribute("mayorConsumo", this.superServicio.darFechaMayoresIngreso());
         return "cuentas";
     }
 

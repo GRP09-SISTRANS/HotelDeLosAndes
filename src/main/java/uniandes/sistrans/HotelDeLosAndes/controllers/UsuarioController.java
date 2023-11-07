@@ -1,14 +1,19 @@
 package uniandes.sistrans.HotelDeLosAndes.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.sistrans.HotelDeLosAndes.models.Usuario;
 import uniandes.sistrans.HotelDeLosAndes.repositories.UsuarioRepository;
+import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
 
 
 @Controller
@@ -16,9 +21,13 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private SuperServicio superServicio;
+
     @GetMapping(value="/usuarios")
     public String usuario(Model model) {
         model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+        model.addAttribute("buenosClientes", this.superServicio.darBuenosClientes());
         return "usuarios";
     }
 
@@ -26,6 +35,14 @@ public class UsuarioController {
     public String crearUsuario(Model model) {
         model.addAttribute("usuario", usuarioRepository.darUsuarios());
         return "usuarioNuevo";
+    }
+
+    @GetMapping(value="/usuarios/consumos")
+    public String consumo(@ModelAttribute("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio
+    , @RequestParam("fechaFin")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin, @ModelAttribute("usuarioId") Integer usuarioId, Model model) {
+
+        model.addAttribute("consumosUsuario", this.superServicio.consumosUsuario(fechaInicio, fechaFin, usuarioId));
+        return "usuarioConsumo";
     }
 
     @GetMapping(value="/usuarios/new/save")

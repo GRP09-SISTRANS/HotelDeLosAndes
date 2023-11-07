@@ -51,6 +51,26 @@
           </tr>
         </th:block>
       </table>
+
+
+      <table class="table">
+        <thead>
+          <tr class="table-dark">
+            <th>ID Habitaciódn</th>
+            <th>Indice ocupacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <th:block th:each="resultado : ${indicesOcupacion}">
+            <tr class="table-info">
+              <td th:text="${resultado.id_habitacion}"></td>
+              <td th:text="${resultado.indice_ocupacion}"></td>
+            </tr>
+          </th:block>
+        </tbody>
+      </table>
+
+
     </main>
   </body>
 </html>

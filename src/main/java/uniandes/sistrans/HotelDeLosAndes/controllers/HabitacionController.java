@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.sistrans.HotelDeLosAndes.models.Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.repositories.HabitacionRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.Tipos_HabitacionRepository;
+import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
 
 
 @Controller
@@ -20,9 +21,13 @@ public class HabitacionController {
     @Autowired
     private Tipos_HabitacionRepository tipoHabitacionRepository;
 
+    @Autowired
+    private SuperServicio superServicio;
+
     @GetMapping(value="/habitaciones")
     public String habitacion(Model model) {
         model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
+        model.addAttribute("indicesOcupacion", this.superServicio.darIndicesOcupacion());
         return "habitaciones";
     }
 

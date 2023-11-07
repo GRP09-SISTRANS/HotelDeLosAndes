@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+
 import uniandes.sistrans.HotelDeLosAndes.models.ServicioEntity;
 
 
@@ -13,4 +14,6 @@ import uniandes.sistrans.HotelDeLosAndes.models.ServicioEntity;
 public interface ServicioRepository extends JpaRepository<ServicioEntity, Long> {
     @Query(value = "SELECT * FROM servicios", nativeQuery = true)
     Collection<ServicioEntity> darServicios();
+
+ 
 }

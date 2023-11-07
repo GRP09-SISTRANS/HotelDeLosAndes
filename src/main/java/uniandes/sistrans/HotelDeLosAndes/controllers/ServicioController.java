@@ -1,15 +1,19 @@
 package uniandes.sistrans.HotelDeLosAndes.controllers;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import uniandes.sistrans.HotelDeLosAndes.models.BarEntity;
@@ -19,6 +23,7 @@ import uniandes.sistrans.HotelDeLosAndes.models.LavanderiaEntity;
 import uniandes.sistrans.HotelDeLosAndes.models.PiscinaEntity;
 import uniandes.sistrans.HotelDeLosAndes.models.PrestamoUtensiliosEntity;
 import uniandes.sistrans.HotelDeLosAndes.models.SalonConferenciaEntity;
+import uniandes.sistrans.HotelDeLosAndes.models.SuperObjeto;
 import uniandes.sistrans.HotelDeLosAndes.models.ServicioEntity;
 import uniandes.sistrans.HotelDeLosAndes.models.ServicioForm;
 import uniandes.sistrans.HotelDeLosAndes.models.SpaEntity;
@@ -35,6 +40,7 @@ import uniandes.sistrans.HotelDeLosAndes.repositories.ServicioRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.SpaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.SuperMercadoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.TiendaRepository;
+import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
 
 
 @Controller
@@ -72,11 +78,36 @@ public class ServicioController {
     @Autowired
     private LavanderiaRepository lavanderiaRepository;
 
+    @Autowired
+    private SuperServicio superServicio;
+
     @GetMapping("/servicios")
     public String servicios(Model model, String ciudad, String tipo) {
         model.addAttribute("servicios", this.servicioRepository.findAll());
+        List<SuperObjeto> pepe = this.superServicio.dineroRecolectado();
+        for (SuperObjeto servicioDineroHabitacion : pepe) {
+            System.out.println(servicioDineroHabitacion.getNombre());
+        }
+        model.addAttribute("servicioHabDinero", this.superServicio.dineroRecolectado());
+       // model.addAttribute("servicioHabDinero", this.servicioRepository.dineroRecolectado());
         
         return "servicios";
+    }
+    @GetMapping("/servicios/populares")
+    public String getServiciosPopulares(@ModelAttribute("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio
+    , @RequestParam("fechaFin")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin, Model model){
+        List<SuperObjeto>serviciosPopulares = this.superServicio.darServiciosMasPopulares(fechaInicio, fechaFin);
+        model.addAttribute("serviciosPopulares", serviciosPopulares);
+        return "serviciosPopulares";
+    }
+
+    @GetMapping("/servicios/usuariosServiciosConsumos")
+    public String getusuariosConsumos(@ModelAttribute("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio
+    , @ModelAttribute("fechaFin")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate fechaFin,  
+     @ModelAttribute("servicioId") Integer servicioId, @ModelAttribute("tipoAgrupamiento") String tipoAgrupamiento, Model model){
+        List<SuperObjeto>serviciosPopulares = this.superServicio.darConsumosServiciosUsuario(fechaInicio, fechaFin, servicioId, tipoAgrupamiento);
+        model.addAttribute("serviciosPopulares", serviciosPopulares);
+        return "usuariosServiciosConsumos";
     }
 
     @GetMapping("/servicios/new")
@@ -84,6 +115,8 @@ public class ServicioController {
         model.addAttribute("servicioForm", new ServicioForm());
         return "servicioNuevo";
     }
+
+    
 
     @PostMapping("/servicios/new/save")
     @Transactional

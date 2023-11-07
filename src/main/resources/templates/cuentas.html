@@ -16,6 +16,57 @@
       </div>
     </nav>
 
+    <table class="table">
+      <thead>
+        <tr class="table-dark">
+          <th>Fecha mayor ocupación</th>
+          <th>Ocupacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="resultado : ${mayorOcupacion}">
+          <tr class="table-info">
+            <td th:text="${resultado.fecha}"></td>
+            <td th:text="${resultado.ocupacion}"></td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+
+    <table class="table">
+      <thead>
+        <tr class="table-dark">
+          <th>Fecha menor ocupación</th>
+          <th>ocupación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="resultado : ${menorOcupacion}">
+          <tr class="table-info">
+            <td th:text="${resultado.fecha}"></td>
+            <td th:text="${resultado.ocupacion}"></td>
+          
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr class="table-dark">
+          <th>Fecha menor ocupación</th>
+          <th>Ingresos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="resultado : ${mayorConsumo}">
+          <tr class="table-info">
+            <td th:text="${resultado.fecha}"></td>
+            <td th:text="${resultado.ingresos}"></td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+
     <main class="container m-4">
 
       <h2>Cuentas</h2>
