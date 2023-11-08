@@ -5,13 +5,18 @@ import oracledb
 import random
 from datetime import timedelta
 
+"""
+This class is responsible for generating data for the database
+"""
 class DataGenerator:
     def __init__(self):
         # config database connection
         self.cur = None
         self.conn = None
 
+        # config faker
         self.faker = Faker('en_US')
+
         # define sequences
         self.secuencia_usuarios = 1
         self.secuencia_servicios = 1
@@ -23,7 +28,7 @@ class DataGenerator:
         self.secuencia_producto = 1
         self.secuencia_plan_consumo = 1
 
-        self.reservas=[]
+        self.reservas = []
 
     def create_connection(self, host: str, port: str, user: str, password: str):
         dsn_tns = oracledb.makedsn(host, port, service_name='PROD')
@@ -36,7 +41,7 @@ class DataGenerator:
         self.cur = connection.cursor()
 
     def crearTienda(self, cantidad_registros: int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre': self.faker.word() + ' Tienda',
@@ -61,7 +66,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearSalonConferencia(self, cantidad_registros:int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
                     'nombre': self.faker.word(),
@@ -76,7 +81,7 @@ class DataGenerator:
             self.conn.commit()
 
     def crearLavanderia(self, cantidad_registros:int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre': self.faker.name(),
@@ -92,7 +97,7 @@ class DataGenerator:
             self.conn.commit()
 
     def crearPrestamoUtensilios(self, cantidad_registros: int): 
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre' : self.faker.name(),
@@ -108,7 +113,7 @@ class DataGenerator:
             self.conn.commit() 
              
     def crearSpa(self, cantidad_registros: int): 
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             nombre = self.faker.word() +" Spa"
             servicio_general = {
                 'id': self.secuencia_servicios,
@@ -125,7 +130,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearSupermercado(self, cantidad_registros: int): 
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                 'id': self.secuencia_servicios,
                 'nombre' : self.faker.name(),
@@ -163,39 +168,9 @@ class DataGenerator:
 
                 self.cur.execute("INSERT INTO Habitacion (id, capacidad, tipos_habitacion_id) VALUES (:id, :capacidad, :tipo_habitacion_id)", habitaciones_general)
                 self.conn.commit()
-
-
-                
-                
-    
-    def limpiarBase(self):
-        self.cur.execute("DELETE FROM bar")
-        self.cur.execute("DELETE FROM reserva_cliente")
-        self.cur.execute("DELETE FROM piscina")
-        self.cur.execute("DELETE FROM gimnasio")
-        self.cur.execute("DELETE FROM salon_conferencia")
-        self.cur.execute("DELETE FROM internet")
-        self.cur.execute("DELETE FROM tienda")
-        self.cur.execute("DELETE FROM lavanderia")
-        self.cur.execute("DELETE FROM prestamo_utensilios")
-        self.cur.execute("DELETE FROM spa")
-        self.cur.execute("DELETE FROM supermercado")
-        self.cur.execute("DELETE FROM reserva_servicio")
-        self.cur.execute("DELETE FROM cuenta")
-        self.cur.execute("DELETE FROM producto")
-        self.cur.execute("DELETE FROM servicio")
-        self.cur.execute("DELETE FROM habitacion")
-        self.cur.execute("DELETE FROM usuario")
-        self.cur.execute("DELETE FROM reserva")
-        self.cur .execute("DELETE FROM reserva_cliente")
-        self.cur.execute("DELETE FROM plan_consumo")
-        
-
-        self.conn.commit()
     
     def crearBar(self, cantidad_registros: int):
-
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
                     'nombre': self.faker.word() + ' Bar',
@@ -210,7 +185,7 @@ class DataGenerator:
             self.conn.commit()
 
     def crearPiscina(self, cantidad_registros: int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
                     'nombre': self.faker.word() + ' Piscina',
@@ -224,7 +199,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearGimnasio(self, cantidad_registros: int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
                     'nombre': self.faker.word() + ' Gym',
@@ -238,7 +213,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearInternet(self, cantidad_registros: int):
-        for i in range(cantidad_registros):
+        for _ in range(cantidad_registros):
             servicio_general = {
                     'id': self.secuencia_servicios,
                     'nombre': self.faker.word() + ' Internet',
@@ -252,7 +227,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearProducto(self, cantidad_registro:int):
-        for i in range(cantidad_registro):
+        for _ in range(cantidad_registro):
             producto = {
                 'id': self.secuencia_producto,
                 'servicio_id': self.faker.random_int(min=1, max=self.secuencia_servicios-1),
@@ -265,7 +240,7 @@ class DataGenerator:
     
     def crearUsuario(self, cantidadRegistro:int, tipo_usuario:str):
         tipos_documento = ['CC', 'CE', 'TI', 'PP']
-        for i in range(cantidadRegistro):
+        for _ in range(cantidadRegistro):
             usuario = {
                 'id': self.secuencia_usuarios,
                 'tipo_doc': tipos_documento[random.randint(0,len(tipos_documento)-1)],
@@ -282,7 +257,7 @@ class DataGenerator:
             self.conn.commit()
     
     def crearReservaServicio(self, cantidadRegistro:int):
-        for i in range(cantidadRegistro):
+        for _ in range(cantidadRegistro):
     
             # Generar una fecha aleatoria
             fecha = self.faker.date_between(start_date='-2y', end_date='today')
@@ -300,7 +275,7 @@ class DataGenerator:
     
     def crearCuenta(self, cantidadRegistro:int):
         fecha = self.faker.date_between(start_date='-2y', end_date='today')
-        for i in range(cantidadRegistro):
+        for _ in range(cantidadRegistro):
             fecha = self.faker.date_between(start_date='-2y', end_date='today')
             fecha_oracle = fecha.strftime('%Y-%m-%d').upper()
             cuenta = {
@@ -313,6 +288,7 @@ class DataGenerator:
             self.cur.execute("INSERT INTO cuenta (id, reserva_id, producto_id, cantidad, fecha) VALUES (:id, :reserva_id, :producto_id, :cantidad, to_date(:fecha, 'yyyy/mm/dd'))", cuenta)
             self.secuencia_cuenta += 1
             self.conn.commit()
+
     def crearReserva(self, cantidadRegistro:int):
         for i in range(cantidadRegistro):
             #fecha de inicio entre hace 2 años y hoy
@@ -335,9 +311,8 @@ class DataGenerator:
             self.secuencia_reservas += 1
             self.conn.commit()
 
-    
     def crearPlanConsumo(self, cantidadRegistro:int):
-        for i in range(cantidadRegistro):
+        for _ in range(cantidadRegistro):
             plan_consumo = {
                 'id': self.secuencia_plan_consumo,
                 'nombre': self.faker.word() + ' Plan consumo',
@@ -346,8 +321,9 @@ class DataGenerator:
             self.cur.execute("INSERT INTO plan_consumo (id, nombre, descripcion) VALUES (:id, :nombre, :descripcion)", plan_consumo)
             self.secuencia_plan_consumo += 1
             self.conn.commit()
+
     def crearReservaCliente(self, cantidadRegistro:int):
-        for i in range(cantidadRegistro):
+        for _ in range(cantidadRegistro):
             posible_piso = self.faker.random_int(min=0, max=self.secuencia_habitaciones)
             posible_habitacion = self.faker.random_int(min=1, max=9)
             habitacion_id = posible_piso*100 + posible_habitacion
@@ -362,11 +338,31 @@ class DataGenerator:
             self.cur.execute("INSERT INTO reserva_cliente (reserva_id, usuario_id, habitacion_id, plan_consumo_id) VALUES (:reserva_id, :usuario_id, :habitacion_id, :plan_consumo_id)", reserva_cliente)
             self.conn.commit()
 
+    def limpiarBase(self):
+        self.cur.execute("DELETE FROM bar")
+        self.cur.execute("DELETE FROM reserva_cliente")
+        self.cur.execute("DELETE FROM piscina")
+        self.cur.execute("DELETE FROM gimnasio")
+        self.cur.execute("DELETE FROM salon_conferencia")
+        self.cur.execute("DELETE FROM internet")
+        self.cur.execute("DELETE FROM tienda")
+        self.cur.execute("DELETE FROM lavanderia")
+        self.cur.execute("DELETE FROM prestamo_utensilios")
+        self.cur.execute("DELETE FROM spa")
+        self.cur.execute("DELETE FROM supermercado")
+        self.cur.execute("DELETE FROM reserva_servicio")
+        self.cur.execute("DELETE FROM cuenta")
+        self.cur.execute("DELETE FROM producto")
+        self.cur.execute("DELETE FROM servicio")
+        self.cur.execute("DELETE FROM habitacion")
+        self.cur.execute("DELETE FROM usuario")
+        self.cur.execute("DELETE FROM reserva")
+        self.cur .execute("DELETE FROM reserva_cliente")
+        self.cur.execute("DELETE FROM plan_consumo")
 
-    
-    
+        self.conn.commit()
 
-if __name__ == '__main__':
+def main():
     # instance the DataGenerator class
     data_generator = DataGenerator()
 
@@ -394,3 +390,5 @@ if __name__ == '__main__':
     data_generator.crearReservaCliente(100)
     #data_generator.crearUsuario(10, 2)
 
+if __name__ == '__main__':
+    main()

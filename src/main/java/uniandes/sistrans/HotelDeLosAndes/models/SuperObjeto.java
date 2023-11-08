@@ -1,7 +1,6 @@
 package uniandes.sistrans.HotelDeLosAndes.models;
 
 import java.util.Date;
-import java.time.LocalDate;
 
 public class SuperObjeto {
     private String nombre;
@@ -25,11 +24,8 @@ public class SuperObjeto {
     private Integer numero_usuarios;
     private String tipo_agrupamiento;
 
-    
-    
+    public SuperObjeto() {;}
 
-    
-    
     public Integer getFrecuencia_consumo() {
         return frecuencia_consumo;
     }
@@ -84,10 +80,6 @@ public class SuperObjeto {
 
     public void setConsumo_total(Double consumo_total) {
         this.consumo_total = consumo_total;
-    }
-
-    public SuperObjeto() {
-        
     }
 
     public Integer getOcupacion() {
@@ -193,12 +185,4 @@ public class SuperObjeto {
     public void setTipo_agrupamiento(String tipo_agrupamiento) {
         this.tipo_agrupamiento = tipo_agrupamiento;
     }
-
-    
-    
-
-    
-
-    
-    
 }
