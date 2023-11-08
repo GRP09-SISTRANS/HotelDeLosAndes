@@ -45,4 +45,9 @@ public class HotelDeLosAndesController {
     public String gerente() {
         return "gerente";
     }
+
+    @RequestMapping("/roles/rfc")
+    public String rfc() {
+        return "rfc";
+    }
 }
