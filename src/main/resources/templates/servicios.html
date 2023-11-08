@@ -23,36 +23,36 @@
       <label for="fechaFin">Fecha de fin:</label><br>
       <input type="date" id="fechaFin" name="fechaFin" required><br>
       <input type="submit" value="Enviar">
-  </form>
+    </form>
 
 
-  <form action="#" th:action="@{/servicios/usuariosServiciosConsumos}" method="get">
-    <label for="nombre">Servicios consumidos</label><br>
-    <input type="checkbox" name= "consumido"/>
-    <label for="nombre">Tipo de agrupamiento:</label><br>
-    <select class="form-control" id="tipoAgrupamiento" name="tipoAgrupamiento">
-      <option value="Nada" >Nada</option>
-      <option value="Fecha">Fecha</option>
-      <option value="Fecha y Cliente" >Fecha Y Cliente</option>
-      <option value="Cliente" >Cliente</option>
-      <option value="Frecuencia de Consumo">Frecuencia de Consumo</option>
-    </select>
-    <label for="nombre">Servicio</label><br>
-    <select name = "servicioId" class = "form-control">
-      <option
-          th:each="servicio : ${servicios}"
-          th:value="${servicio.id}"
-          th:text="${servicio.id + ' - ' + servicio.nombre}"
-          th:selected="${servicio.id eq servicio.id}"
-        >
-      </option>
-    </select>
-    <label for="fechaInicio">Fecha de inicio:</label><br>
-    <input type="date" id="fechaInicio" name="fechaInicio" required><br>
-    <label for="fechaFin">Fecha de fin:</label><br>
-    <input type="date" id="fechaFin" name="fechaFin" required><br>
-    <input type="submit" value="Enviar">
-</form>
+    <form action="#" th:action="@{/servicios/usuariosServiciosConsumos}" method="get">
+      <label for="nombre">Servicios consumidos</label><br>
+      <input type="checkbox" name= "consumido"/>
+      <label for="nombre">Tipo de agrupamiento:</label><br>
+      <select class="form-control" id="tipoAgrupamiento" name="tipoAgrupamiento">
+        <option value="Nada" >Nada</option>
+        <option value="Fecha">Fecha</option>
+        <option value="Fecha y Cliente" >Fecha Y Cliente</option>
+        <option value="Cliente" >Cliente</option>
+        <option value="Frecuencia de Consumo">Frecuencia de Consumo</option>
+      </select>
+      <label for="nombre">Servicio</label><br>
+      <select name = "servicioId" class = "form-control">
+        <option
+            th:each="servicio : ${servicios}"
+            th:value="${servicio.id}"
+            th:text="${servicio.id + ' - ' + servicio.nombre}"
+            th:selected="${servicio.id eq servicio.id}"
+          >
+        </option>
+      </select>
+      <label for="fechaInicio">Fecha de inicio:</label><br>
+      <input type="date" id="fechaInicio" name="fechaInicio" required><br>
+      <label for="fechaFin">Fecha de fin:</label><br>
+      <input type="date" id="fechaFin" name="fechaFin" required><br>
+      <input type="submit" value="Enviar">
+    </form>
 
     <main class="container m-4">
       

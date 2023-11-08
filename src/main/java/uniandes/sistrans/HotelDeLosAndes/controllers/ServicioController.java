@@ -89,10 +89,10 @@ public class ServicioController {
             System.out.println(servicioDineroHabitacion.getNombre());
         }
         model.addAttribute("servicioHabDinero", this.superServicio.dineroRecolectado());
-       // model.addAttribute("servicioHabDinero", this.servicioRepository.dineroRecolectado());
         
         return "servicios";
     }
+
     @GetMapping("/servicios/populares")
     public String getServiciosPopulares(@ModelAttribute("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio
     , @RequestParam("fechaFin")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin, Model model){
@@ -128,8 +128,6 @@ public class ServicioController {
         model.addAttribute("servicioForm", new ServicioForm());
         return "servicioNuevo";
     }
-
-    
 
     @PostMapping("/servicios/new/save")
     @Transactional

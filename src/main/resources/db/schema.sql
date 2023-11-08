@@ -10,7 +10,7 @@ CREATE TABLE bar (
 
 ALTER TABLE bar
 ADD CONSTRAINT bar_pk PRIMARY KEY ( servicio_id );
- 
+
 CREATE TABLE cuenta (
   id          NUMBER NOT NULL,
   reserva_id  NUMBER NOT NULL,

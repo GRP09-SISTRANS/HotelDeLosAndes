@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @Service
 public class SuperServicio {
     @Autowired
@@ -403,7 +404,7 @@ public class SuperServicio {
         }, params);
     }
 
-    // Req funcional 10, está en servicio controller, usa una query dinamica
+    // REQ FUNC-9: ServicioController.java
     public List<SuperObjeto> darNoConsumosServiciosUsuario(LocalDate fechaInicio, LocalDate fechaFin,
             Integer servicioId, String tipoAgrupamiento) {
         StringBuilder sqlBuilder = new StringBuilder();
