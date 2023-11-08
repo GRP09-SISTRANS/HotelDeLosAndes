@@ -14,7 +14,7 @@ import uniandes.sistrans.HotelDeLosAndes.models.CuentaEntity;
 import uniandes.sistrans.HotelDeLosAndes.repositories.CuentaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.ProductoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.ReservaRepository;
-import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
+import uniandes.sistrans.HotelDeLosAndes.services.SuperServicio;
 
 
 @Controller

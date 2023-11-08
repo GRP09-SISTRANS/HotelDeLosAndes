@@ -40,7 +40,7 @@ import uniandes.sistrans.HotelDeLosAndes.repositories.ServicioRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.SpaRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.SuperMercadoRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.TiendaRepository;
-import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
+import uniandes.sistrans.HotelDeLosAndes.services.SuperServicio;
 
 
 @Controller
