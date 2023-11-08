@@ -10,12 +10,13 @@ CREATE TABLE bar (
 
 ALTER TABLE bar
 ADD CONSTRAINT bar_pk PRIMARY KEY ( servicio_id );
-
+ 
 CREATE TABLE cuenta (
   id          NUMBER NOT NULL,
   reserva_id  NUMBER NOT NULL,
   producto_id NUMBER NOT NULL,
-  cantidad    NUMBER NOT NULL
+  cantidad    NUMBER NOT NULL,
+  fecha       DATE NOT NULL
 );
 
 ALTER TABLE cuenta
@@ -81,7 +82,8 @@ CREATE TABLE producto (
   id          NUMBER NOT NULL,
   servicio_id NUMBER NOT NULL,
   nombre      VARCHAR2(4000) NOT NULL,
-  costo       NUMBER NOT NULL
+  costo       NUMBER NOT NULL,
+  duracion    NUMBER,
 );
 
 ALTER TABLE producto

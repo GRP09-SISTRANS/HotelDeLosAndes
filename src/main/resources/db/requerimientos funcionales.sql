@@ -21,6 +21,21 @@ WHERE re.fecha_final_reserva BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE
 GROUP BY h.id, re.fecha_final_reserva
 ORDER BY indice_ocupacion DESC;
 
+-- req funcional 4
+-- Servicio por tipo y precio
+select se.* from servicio se inner join producto pro on pro.servicio_id = se.id
+    inner join cuenta cu on cu.producto_id = pro.id 
+    where se.tipo = 'Piscina' and costo Between 0 and 100000;
+    
+-- Servicio por tipo
+select se.* from servicio se
+    where se.tipo = 'Piscina';
+    
+--Servicio por tipo, precio y fecha
+select se.* from servicio se inner join producto pro on pro.servicio_id = se.id
+    inner join cuenta cu on cu.producto_id = pro.id 
+    where se.tipo = 'Piscina' and cu.fecha BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-12-31', 'YYYY-MM-DD') and costo Between 0 and 100000;
+
 -- req funcional 5
 Select us.nombre, pro.nombre as nombre_producto, pro.costo from usuario us inner join reserva_cliente rec on rec.usuario_id = us.id inner join reserva re on rec.reserva_id = re.id
 inner join cuenta cu on cu.reserva_id = re.id inner join producto pro on cu.producto_id = pro.id where us.nombre = 'nombre_cliente';
