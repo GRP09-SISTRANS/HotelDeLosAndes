@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import uniandes.sistrans.HotelDeLosAndes.models.Habitacion;
 import uniandes.sistrans.HotelDeLosAndes.repositories.HabitacionRepository;
 import uniandes.sistrans.HotelDeLosAndes.repositories.Tipos_HabitacionRepository;
-import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
+import uniandes.sistrans.HotelDeLosAndes.services.SuperServicio;
 
 
 @Controller

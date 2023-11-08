@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.sistrans.HotelDeLosAndes.models.Usuario;
 import uniandes.sistrans.HotelDeLosAndes.repositories.UsuarioRepository;
-import uniandes.sistrans.HotelDeLosAndes.req_funcionales_services.SuperServicio;
+import uniandes.sistrans.HotelDeLosAndes.services.SuperServicio;
 
 
 @Controller
